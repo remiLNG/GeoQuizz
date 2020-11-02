@@ -5,3 +5,7 @@
 .flag-img{
     height: 200px;
 }
+
+ul{
+    list-style: none;
+}
