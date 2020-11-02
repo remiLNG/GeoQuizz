@@ -6,7 +6,8 @@ let state = {
 
 let countries = [];
 let questions = {};
-
+let questionNumber = 1;
+let questionTotal = 1;
 
 const init = async () => {
     state.question = document.querySelector("#question");
@@ -21,6 +22,10 @@ const init = async () => {
 const pickQuestion = () => {
 
     questions = createQuestion(countries);
+
+    //Aficher suivi des questions
+    state.question.querySelector("p").innerHTML = " Question " + questionNumber + " / " + questionTotal;
+ 
 
     // Afficher un drapeau
     state.question.querySelector("img").setAttribute("src",questions.flag);
