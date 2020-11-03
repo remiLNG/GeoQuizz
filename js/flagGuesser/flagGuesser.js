@@ -8,7 +8,7 @@ let state = {
 let countries = [];
 let questions = {};
 let questionNumber = 1;
-let questionTotal = 1;
+let questionTotal = 3;
 
 const init = async () => {
     state.question = document.querySelector("#question");
@@ -18,17 +18,35 @@ const init = async () => {
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
+ 
+    
+    genererateQuestion();
+    validQuestion();
+    nextQuestion();
+}
+
+
+const validQuestion = () => {
     state.question.querySelector('ul').addEventListener('click',({target}) => {
         if (target.matches('li')){
              const userAnswer = target.innerHTML;
              checkAnswer(userAnswer);
         }
     });
-
-    pickQuestion();
 }
 
-const pickQuestion = () => {
+
+// Passer à la question suivante
+const nextQuestion = () => {
+    state.answer.querySelector('button').addEventListener('click', () => {
+        if(questionNumber <= questionTotal){
+            genererateQuestion(); //On recrée une question
+            switchState('question'); //on passe à la question suivante
+        }
+    });
+}
+
+const genererateQuestion = () => {
 
     questions = createQuestion(countries);
 
@@ -69,8 +87,9 @@ const createQuestion = (countries) => {
         return a.charCodeAt(0) - b.charCodeAt(0);
     });
 
+    // Tout ce qui va nous servir à creer la question (un drapeau, un choix de reponse, une bonne reponse)
     const questions = {
-        flag: country.flag,  //on recupere le drapeau
+        flag: country.flag,  
         answer: country.name,
         possibilities
     }
@@ -78,7 +97,8 @@ const createQuestion = (countries) => {
     return questions;
 }
 
-const switchPanel = (states) =>{
+//Passer d'un état à l'autre (question, verification de reponse)
+const switchState = (states) =>{
     switch(states){
         case 'answer':
             state.answer.style.display = 'block';
@@ -95,14 +115,20 @@ const switchPanel = (states) =>{
     }
 };
 
+
+// Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
+    // si oui alors bonne reponse
     if(userAnswer === questions.answer){
-        state.answer.querySelector('h2').innerHTML ='Good answer';
+        state.answer.querySelector('h2').innerHTML ='Bonne réponse';
         state.answer.querySelector('p').innerHTML ='';
     }else{
-        state.answer.querySelector('h2').innerHTML ='Wrong answer';
-        state.answer.querySelector('p').innerHTML =`The answer was: ${questions.answer}`;
+        // si non alors mauvais reponse
+        state.answer.querySelector('h2').innerHTML ='Mauvaise réponse';
+        state.answer.querySelector('p').innerHTML =`La réponse était : ${questions.answer}`; 
 
     }
-    switchPanel('answer');
+    questionNumber++; 
+    //afficher la reponse dans state answer
+    switchState('answer');
 }
