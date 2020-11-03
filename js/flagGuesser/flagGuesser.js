@@ -2,17 +2,20 @@
 
 let state = {
     question: null,
-    answer: null
+    answer: null,
+    end: null
 }
 
 let countries = [];
 let questions = {};
 let questionNumber = 1;
 let questionTotal = 3;
+let goodAnswers = 0;
 
 const init = async () => {
     state.question = document.querySelector("#question");
     state.answer = document.querySelector("#answer");
+    state.end = document.querySelector("#end");
 
     // Acces à toutes les informations des pays
     const response = await fetch("https://restcountries.eu/rest/v2/all");
@@ -21,12 +24,13 @@ const init = async () => {
  
     
     genererateQuestion();
-    validQuestion();
+    handleClickChoice();
     nextQuestion();
 }
 
 
-const validQuestion = () => {
+// Cliquer sur une des reponses
+const handleClickChoice = () => {
     state.question.querySelector('ul').addEventListener('click',({target}) => {
         if (target.matches('li')){
              const userAnswer = target.innerHTML;
@@ -42,10 +46,14 @@ const nextQuestion = () => {
         if(questionNumber <= questionTotal){
             genererateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
+        }else{ //Si il n'y en a plus alors on affiche le score dans le end state
+            state.end.querySelector('p').innerHTML = `Your score is: ${goodAnswers} / ${questionTotal}`
+            switchState('end');
         }
     });
 }
 
+//Generer une question
 const genererateQuestion = () => {
 
     questions = createQuestion(countries);
@@ -57,7 +65,7 @@ const genererateQuestion = () => {
     // Afficher un drapeau
     state.question.querySelector("img").setAttribute("src",questions.flag);
 
-    //Ajouter les reponses sur la page
+    //Ajouter les choix de reponses sur la page
     const reponses = questions.possibilities.map((possibility) => {
         return `<li>${possibility}</li>`;
     });
@@ -65,6 +73,7 @@ const genererateQuestion = () => {
 }
 
 window.onload = init;
+
 
 
 const createQuestion = (countries) => {
@@ -103,14 +112,17 @@ const switchState = (states) =>{
         case 'answer':
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
+            state.end.style.display ='none';
             break;
         case 'question':
             state.answer.style.display = 'none';
             state.question.style.display = 'block';
+            state.end.style.display ='none';
             break;
         default:
             state.answer.style.display = 'none';
             state.question.style.display = 'none';
+            state.end.style.display ='block';
             break;
     }
 };
@@ -122,6 +134,7 @@ const checkAnswer = (userAnswer) => {
     if(userAnswer === questions.answer){
         state.answer.querySelector('h2').innerHTML ='Bonne réponse';
         state.answer.querySelector('p').innerHTML ='';
+        goodAnswers++;
     }else{
         // si non alors mauvais reponse
         state.answer.querySelector('h2').innerHTML ='Mauvaise réponse';
