@@ -6,7 +6,7 @@ body {
 /* Partie drapeau et conteneur du drapeau  */
 
 div.jumbotron {
-    margin-top: 15rem;
+    margin-top: 12rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-right: 1rem;
@@ -15,6 +15,21 @@ div.jumbotron {
     background-size: cover;
     box-shadow: 2px 2px 2px 3px black;
     
+}
+
+#nbquestion{
+    padding-top: 3rem;
+}
+
+.police{
+    text-align: center;
+    padding-top: 3rem;
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
 }
 
 div.jumbotron #flag{

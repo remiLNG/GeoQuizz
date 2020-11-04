@@ -32,7 +32,7 @@ function createButton($class,$text) {
             genererateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         }else{ //Si il n'y en a plus alors on affiche le score dans le end state
-            state.end.querySelector('p').innerHTML = `Your score is: ${goodAnswers} / ${questionTotal}`
+            state.end.querySelector('p').innerHTML = `Votre score est: ${goodAnswers} / ${questionTotal}`
             switchState('end');
         }
     });
