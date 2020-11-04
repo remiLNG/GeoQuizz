@@ -95,10 +95,16 @@ const createQuestion = (countries) => {
     // Liste des reponses
     const possibilities = [];
     
-    for(let i =0; i<3; i++){ //On affiche 3 reponses random
+    while(possibilities.length < 3) { //On affiche 3 reponses random
         const r = parseInt(Math.random() * countries.length);
         const name = countries[r].name;
-        possibilities.push(name);
+        if(!possibilities.includes(name) && name != country.name) {
+            possibilities.push(name);
+        }
+        else{
+            console.log("doublon")
+        }
+        
     }
 
     possibilities.push(country.name); //on ajoute la bonne reponse
