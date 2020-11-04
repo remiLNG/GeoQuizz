@@ -3,10 +3,14 @@
 }
 
 .flag-img{
-    height: 200px;
+    height: 300px;
 }
 
 ul{
     list-style: none;
     cursor: pointer;
+}
+
+.btn.btn-primary.hidden {
+    display: none;
 }

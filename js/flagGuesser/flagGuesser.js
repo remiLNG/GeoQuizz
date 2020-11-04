@@ -12,6 +12,32 @@ let questionNumber = 1;
 let questionTotal = 3;
 let goodAnswers = 0;
 
+function createButton($class,$text) {  
+    var myDiv = document.getElementById("answer");  
+    // On créer le bouton  
+    var button = document.createElement('BUTTON');  
+    // Texte du bouton
+    var text = document.createTextNode($text); 
+    //Type du bouton
+    button.type = 'button'
+    //classe du bouton
+    button.className += $class;
+    // appending text to button 
+    button.appendChild(text); 
+    // appending button to div 
+    myDiv.appendChild(button);
+
+    button.addEventListener('click', () => {
+        if(questionNumber <= questionTotal){
+            genererateQuestion(); //On recrée une question
+            switchState('question'); //on passe à la question suivante
+        }else{ //Si il n'y en a plus alors on affiche le score dans le end state
+            state.end.querySelector('p').innerHTML = `Your score is: ${goodAnswers} / ${questionTotal}`
+            switchState('end');
+        }
+    });
+}
+
 const init = async () => {
     state.question = document.querySelector("#question");
     state.answer = document.querySelector("#answer");
@@ -21,11 +47,8 @@ const init = async () => {
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
- 
-    
     genererateQuestion();
     handleClickChoice();
-    nextQuestion();
 }
 
 
@@ -39,19 +62,6 @@ const handleClickChoice = () => {
     });
 }
 
-
-// Passer à la question suivante
-const nextQuestion = () => {
-    state.answer.querySelector('button').addEventListener('click', () => {
-        if(questionNumber <= questionTotal){
-            genererateQuestion(); //On recrée une question
-            switchState('question'); //on passe à la question suivante
-        }else{ //Si il n'y en a plus alors on affiche le score dans le end state
-            state.end.querySelector('p').innerHTML = `Your score is: ${goodAnswers} / ${questionTotal}`
-            switchState('end');
-        }
-    });
-}
 
 //Generer une question
 const genererateQuestion = () => {
@@ -113,6 +123,11 @@ const switchState = (states) =>{
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
             state.end.style.display ='none';
+            if  (state.answer.contains(document.querySelector('button') ) )  {
+            }
+            else{
+                createButton('btn btn-primary','Question suivante')
+            }
             break;
         case 'question':
             state.answer.style.display = 'none';
