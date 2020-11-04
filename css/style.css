@@ -1,16 +1,49 @@
+body {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+}
+
+/* Partie drapeau et conteneur du drapeau  */
+
+div.jumbotron {
+    margin-top: 15rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    background-color: rgb(79, 174, 234);
+    background-size: cover;
+    box-shadow: 2px 2px 2px 3px black;
+    
+}
+
+div.jumbotron #flag{
+    max-width: 50%;
+    height: auto;
+}
+
+/* Partie question  */
+
 #question{
     text-align: center;
 }
 
-.flag-img{
-    height: 300px;
-}
+/* Partie Liste des réponses  */
 
 ul{
     list-style: none;
     cursor: pointer;
 }
 
-.btn.btn-primary.hidden {
-    display: none;
+ul.jumbotron {
+    background-color:rgb(79, 174, 234);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-shadow: 2px 2px 2px black;
+}
+
+#response {
+    margin-right: 2rem;
+    margin-top: 1rem;
 }

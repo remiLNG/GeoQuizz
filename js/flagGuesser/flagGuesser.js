@@ -77,7 +77,7 @@ const genererateQuestion = () => {
 
     //Ajouter les choix de reponses sur la page
     const reponses = questions.possibilities.map((possibility) => {
-        return `<li>${possibility}</li>`;
+        return `<li id="response" class="btn btn-primary">${possibility}</li>`;
     });
     state.question.querySelector("ul").innerHTML = reponses.join('');
 }
