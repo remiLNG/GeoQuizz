@@ -9,8 +9,6 @@ div.jumbotron {
     margin-top: 12rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
     background-color: rgb(79, 174, 234);
     background-size: cover;
     box-shadow: 2px 2px 2px 3px black;
@@ -21,6 +19,16 @@ div.jumbotron {
     padding-top: 3rem;
 }
 
+
+div.jumbotron #flag{
+    max-width: 50%;
+    height: auto;
+    border-image: linear-gradient(red, blue) 27;
+
+}
+
+/* Écriture  */
+
 .police{
     text-align: center;
     padding-top: 3rem;
@@ -30,11 +38,6 @@ div.jumbotron {
     font-variant: normal; 
     font-weight: 700; 
     line-height: 26.4px; 
-}
-
-div.jumbotron #flag{
-    max-width: 50%;
-    height: auto;
 }
 
 /* Partie question  */
