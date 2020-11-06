@@ -52,6 +52,8 @@ const init = async () => {
 }
 
 
+
+
 // Cliquer sur une des reponses
 const handleClickChoice = () => {
     state.question.querySelector('ul').addEventListener('click',({target}) => {
