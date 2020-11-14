@@ -66,3 +66,12 @@ ul.jumbotron {
     margin-right: 2rem;
     margin-top: 1rem;
 }
+
+
+/* FlagFinder */
+
+#question, img{
+    height: 100px;
+}
+
+/* MENU */
