@@ -41,6 +41,17 @@ div.jumbotron #flag{
     line-height: 26.4px; 
 }
 
+.policeS{
+    text-align: center;
+    padding-top: 2rem;
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
+    font-size: 16px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
 /* Partie question  */
 
 #question{
