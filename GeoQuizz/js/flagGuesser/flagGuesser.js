@@ -99,8 +99,8 @@ const createQuestion = (countries) => {
     
     while(possibilities.length < 3) { //On affiche 3 reponses random
         const r = parseInt(Math.random() * countries.length);
-        const name = countries[r].name;
-        if(!possibilities.includes(name) && name != country.name) {
+        const name = countries[r].translations.fr;
+        if(!possibilities.includes(name) && name != country.translations.fr) {
             possibilities.push(name);
         }
         else{
@@ -109,7 +109,7 @@ const createQuestion = (countries) => {
         
     }
 
-    possibilities.push(country.name); //on ajoute la bonne reponse
+    possibilities.push(country.translations.fr); //on ajoute la bonne reponse
     possibilities.sort((a,b) =>{ //on tri la liste des reponses
         return a.charCodeAt(0) - b.charCodeAt(0);
     });
@@ -118,7 +118,7 @@ const createQuestion = (countries) => {
     // Tout ce qui va nous servir à creer la question (un drapeau, un choix de reponse, une bonne reponse)
     const questions = {
         flag: country.flag,  
-        answer: country.name,
+        answer: country.translations.fr,
         possibilities
     }
 
