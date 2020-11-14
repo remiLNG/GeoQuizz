@@ -113,6 +113,7 @@ const createQuestion = (countries) => {
     possibilities.sort((a,b) =>{ //on tri la liste des reponses
         return a.charCodeAt(0) - b.charCodeAt(0);
     });
+    
 
     // Tout ce qui va nous servir à creer la question (un drapeau, un choix de reponse, une bonne reponse)
     const questions = {
