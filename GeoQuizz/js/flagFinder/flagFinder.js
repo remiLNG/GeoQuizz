@@ -98,14 +98,26 @@ const createQuestion = (countries) => {
         var flag3;
         if (flag1 == null) {
             r = parseInt(Math.random() * countries.length)
+            while(countries[r].flag == country.flag){
+                r = parseInt(Math.random() * countries.length);
+                console.log("doublon")
+            }
             flag1 = countries[r].flag;
             possibilities.push(flag1);
         } else if (flag2 == null) {
             r = parseInt(Math.random() * countries.length)
+            while(countries[r].flag == country.flag || countries[r].flag == flag1){
+                r = parseInt(Math.random() * countries.length);
+                console.log("doublon")
+            }
             flag2 = countries[r].flag;
             possibilities.push(flag2)
         } else if (flag3 == null) {
             r = parseInt(Math.random() * countries.length)
+            while(countries[r].flag == country.flag || countries[r].flag == flag1 || countries[r].flag == flag2 ){
+                r = parseInt(Math.random() * countries.length);
+                console.log("doublon")
+            }
             flag3 = countries[r].flag;
             possibilities.push(flag3)
         }
