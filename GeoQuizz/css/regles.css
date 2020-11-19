@@ -1,0 +1,38 @@
+body {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.police{
+    text-align: center;
+    padding-top: 3rem;
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
+.policeS{
+    text-align: center;
+    padding-top: 2rem;
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
+    font-size: 16px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
+#menu.jumbotron {
+    max-width: 50%;
+    margin-top: 12rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: rgb(79, 174, 234);
+    background-size: cover;
+    box-shadow: 2px 2px 2px 3px black;
+    
+}

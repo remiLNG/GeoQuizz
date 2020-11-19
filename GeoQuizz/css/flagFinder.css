@@ -1,0 +1,13 @@
+#question, img{
+    height: 100px;
+}
+
+#question{
+    text-align: center;
+}
+
+body {
+    background-image: url("../assets/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
