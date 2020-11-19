@@ -1,8 +1,13 @@
 body {
-    background-image: url("../assets/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url("../assets/jeux.png");
+    background-size:cover;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position-y: 100%;
+    background-attachment:fixed;
+    background-position: center !important;
 }
+
 
 /* Partie drapeau et conteneur du drapeau  */
 
@@ -84,5 +89,3 @@ ul.jumbotron {
 #question, img{
     height: 100px;
 }
-
-/* MENU */

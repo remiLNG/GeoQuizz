@@ -1,14 +1,23 @@
+@font-face {
+    src: url( ../fonts/MilkyNice.ttf );
+    font-family: milky;
+}
+
 body {
     background-image: url("../assets/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size:cover;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position-y: 100%;
+    background-attachment:fixed;
+    background-position: center !important;
 }
 
 .police{
     text-align: center;
     padding-top: 3rem;
-    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
-    font-size: 24px; 
+    font-family: milky; 
+    font-size:2vw;
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
@@ -18,21 +27,62 @@ body {
 .policeS{
     text-align: center;
     padding-top: 2rem;
-    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
-    font-size: 16px; 
+    font-family: milky; 
+    font-size:0.75vw; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
     line-height: 26.4px; 
 }
 
-#menu.jumbotron {
-    max-width: 50%;
-    margin-top: 12rem;
+#title.jumbotron {
+    max-width: 20%;
+    margin-top: 3rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
     background-color: rgb(79, 174, 234);
     background-size: cover;
     box-shadow: 2px 2px 2px 3px black;
+    margin-left: 40%;
     
+}
+
+#text.jumbotron {
+    max-width: 50%;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: rgb(79, 174, 234);
+    background-size: cover;
+    box-shadow: 2px 2px 2px 3px black;
+    margin-left: 25%;
+    
+}
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+  background: #ffffff;
+  position: relative;
+  margin-left: 45.5%;
+  top: 1.5rem;
+  padding: 0.7%;
+  font-family: milky;
+  font-size: 150%;
+  border-radius: 20px;
+  box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+  transition: all 0.1s;
+}
+
+a:active {
+  top: 2rem;
+  box-shadow: 0px 7px 0px 0px #f02046;
+}
+
+.button2 {
+  background-color: rgb(255, 96, 82);
+  box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+.button2:active {
+  box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
 }
