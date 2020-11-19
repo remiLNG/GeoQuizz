@@ -8,13 +8,15 @@ const chai = require('chai')
 
 var FlagFinder = require('../js/flagGuesser/flagGuesser')
 
+let countries = [];
+
 describe('Test de flagGuesser', function () {
 
     describe('createQuestion', function () {
 
         it('should return a question', function () {
 
-            expect(createQuestion).to.be.a('object')
+            expect(createQuestion(countries)).to.be.a('object')
 
         })
     })
