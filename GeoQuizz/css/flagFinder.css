@@ -1,13 +1,18 @@
+body {
+    background-image: url("../assets/background.png");
+    background-image: url("../assets/jeux.png");
+    background-size:cover;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position-y: 100%;
+    background-attachment:fixed;
+    background-position: center !important;
+}
+
 #question, img{
     height: 100px;
 }
 
 #question{
     text-align: center;
-}
-
-body {
-    background-image: url("../assets/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
 }
