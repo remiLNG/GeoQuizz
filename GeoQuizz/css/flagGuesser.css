@@ -1,3 +1,9 @@
+@font-face {
+    src: url( ../fonts/MilkyNice.ttf );
+    font-family: milky;
+}
+  
+
 body {
     background-image: url("../assets/jeux.png");
     background-size:cover;
@@ -12,13 +18,12 @@ body {
 /* Partie drapeau et conteneur du drapeau  */
 
 div.jumbotron {
-    margin-top: 12rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    background-color: rgb(79, 174, 234);
+    width: 50%;
+    margin-top: 15%;
+    margin-left: 25%;
+    background-color: rgba(255, 255, 255, 0.2);
     background-size: cover;
-    box-shadow: 2px 2px 2px 3px black;
-    
+    border-radius: 25px 25px 25px 25px;
 }
 
 #nbquestion{
@@ -27,9 +32,9 @@ div.jumbotron {
 
 
 div.jumbotron #flag{
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
-    border-image: linear-gradient(red, blue) 27;
+    border-radius: 25px 25px 25px 25px;
 
 }
 
@@ -38,54 +43,101 @@ div.jumbotron #flag{
 .police{
     text-align: center;
     padding-top: 3rem;
-    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
-    font-size: 24px; 
+    font-family: milky; 
+    font-size: 100%; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
     line-height: 26.4px; 
 }
 
-.policeS{
-    text-align: center;
-    padding-top: 2rem;
-    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
-    font-size: 16px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 26.4px; 
-}
-
-/* Partie question  */
-
-#question{
-    text-align: center;
-}
 
 /* Partie Liste des réponses  */
 
 ul{
     list-style: none;
-    cursor: pointer;
+    justify-content: space-around;
+    display: flex;
 }
 
 ul.jumbotron {
-    background-color:rgb(79, 174, 234);
-    margin-top: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    box-shadow: 2px 2px 2px black;
+    background-color:rgba(255, 255, 255, 0.2);
+    border-radius: 25px 25px 25px 25px;
 }
 
-#response {
-    margin-right: 2rem;
-    margin-top: 1rem;
+li {
+    margin-left: 5%;
 }
 
+/* Partie pour les boutons */
 
-/* FlagFinder */
+a{
+    text-decoration: none !important;
+    color: white !important;
+    background: #ffffff;
+    position: relative;
+    padding: 0.7%;
+    font-family: milky;
+    font-size: 150%;
+    border-radius: 20px;
+    box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+    transition: all 0.1s;
+}
+
+a:hover {
+    background-color: #e94b68;
+    font-size: 175%;
+}
+
+a:active{
+    top: 0.5rem;
+    box-shadow: 0px 7px 0px 0px #f02046;
+}
+  
+.button2{
+    background-color: rgb(255, 96, 82);
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+.button2:active{
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+
+#pfin{
+    margin-top: 3%;
+}
+
+/* pour le drapeau */
 
 #question, img{
-    height: 100px;
+    border-radius: 25%;
 }
+
+
+/* Pour les réponses */ 
+
+.btnanswer {
+    display: inline-block;
+    padding: 1%;
+    font-size: 175%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #047cc2;
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0px 7px 0px 0px rgb(51, 157, 255);
+    transition: all 0.1s;
+  }
+  
+  li:hover {
+      background-color: #0a6599;
+      padding: 2%;
+}
+  
+  .btnanswer:active {
+    background-color: #047cc2;
+    box-shadow: 0 5px rgb(51, 157, 255);
+    transform: translateY(4px);
+  }
