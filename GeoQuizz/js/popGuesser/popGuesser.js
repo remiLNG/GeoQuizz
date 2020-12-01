@@ -11,6 +11,10 @@ let questionNumber = 1;
 let questionTotal = 3;
 let score = 0;
 
+
+
+
+
 function createButton($class, $text) {
     var myDiv = document.getElementById("answer");
     // On créer le bouton  
@@ -33,11 +37,12 @@ function createButton($class, $text) {
 
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
             state.end.querySelector('p').innerHTML = 'Votre score est:' + score + '/' + questionTotal;
-            state.end.querySelector('a').innerHTML += '<button class="btn btn-primary"> Retour Menu </button>'
             switchState('end');
         }
     });
 }
+
+
 
 const init = async () => {
     state.question = document.querySelector("#question");
@@ -83,8 +88,13 @@ const genererateQuestion = () => {
 
 const createQuestion = (countries) => {
 
-    const random = parseInt(Math.random() * countries.length);
-    const random2 = parseInt(Math.random() * countries.length);
+    let random = 0;
+    let random2 = 0;
+    
+    do {
+        random = parseInt(Math.random() * countries.length);
+        random2 = parseInt(Math.random() * countries.length);
+    } while (random == random2);
 
     // Pays aleatoire parmis la liste
     const country = countries[random];
@@ -126,6 +136,9 @@ const createQuestion = (countries) => {
     return questions;
 }
 
+
+
+//Passer d'un état à l'autre (question, verification de reponse)
 const switchState = (states) => {
     switch (states) {
         case 'answer':
@@ -149,4 +162,42 @@ const switchState = (states) => {
             state.end.style.display = 'block';
             break;
     }
+}
+
+const getAnswer = () => {
+    var userAnswer = "";
+    state.question.querySelector('#drapeau1').addEventListener('click', function () {
+        userAnswer = questions.possibilities[0].population;
+        checkAnswer(userAnswer)
+    })
+    state.question.querySelector('#pays1').addEventListener('click', function () {
+        userAnswer = questions.possibilities[0].population;
+        checkAnswer(userAnswer)
+    })
+    state.question.querySelector('#drapeau2').addEventListener('click', function () {
+        userAnswer = questions.possibilities[1].population;
+        checkAnswer(userAnswer)
+    })
+    state.question.querySelector('#pays2').addEventListener('click', function () {
+        userAnswer = questions.possibilities[1].population;
+        checkAnswer(userAnswer)
+    })
+}
+
+
+// Verifier si c'est la bonne reponse
+const checkAnswer = (userAnswer) => {
+    // si oui alors bonne reponse
+    if (userAnswer === questions.answer) {
+        state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
+        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.';
+        score++;
+    } else {
+        // si non alors mauvais reponse
+        state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
+        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.' ;
+    }
+    //afficher la reponse dans state answer
+    questionNumber++;
+    switchState('answer');
 }
