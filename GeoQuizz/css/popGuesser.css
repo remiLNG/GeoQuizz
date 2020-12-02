@@ -1,0 +1,62 @@
+@font-face {
+    src: url( ../fonts/MilkyNice.ttf );
+    font-family: milky;
+}
+  
+
+body {
+    background-image: url("../assets/jeux.png");
+    background-size:cover;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position-y: 100%;
+    background-attachment:fixed;
+    background-position: center !important;
+}
+
+
+#nbquestion{
+    padding-top: 3rem;
+}
+
+
+.police{
+    text-align: center;
+    padding-top: 3rem;
+    font-family: milky; 
+    font-size: 100%; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
+
+a{
+    text-decoration: none !important;
+    color: rgb(255, 255, 255) !important;
+    background: #ff0000;
+    position: relative;
+    padding: 0.7%;
+    font-family: milky;
+    font-size: 150%;
+    border-radius: 20px;
+    box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+    transition: all 0.1s;
+}
+
+a:hover {
+    background-color: #e94b68;
+    font-size: 175%;
+}
+
+a:active{
+    top: 0.5rem;
+    box-shadow: 0px 7px 0px 0px #f02046;
+}
+
+
+#question, img{
+    border-radius: 25%;
+}
+
