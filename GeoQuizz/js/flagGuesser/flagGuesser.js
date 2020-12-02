@@ -11,6 +11,7 @@ let questions = {};
 let questionNumber = 1;
 let questionTotal = 3;
 let goodAnswers = 0;
+let userAnswerD;
 
 function createButton($class, $text) {
     var myDiv = document.getElementById("answer");
@@ -74,6 +75,8 @@ const genererateQuestion = () => {
     //Aficher suivi des questions
     state.question.querySelector("p").innerHTML = " Question " + questionNumber + " / " + questionTotal;
 
+    //Afficher la question
+    state.question.querySelector("#questionTitle").innerHTML = " A quel pays appartient ce drapeau ?"
 
     // Afficher un drapeau
     state.question.querySelector("img").setAttribute("src", questions.flag);
@@ -97,12 +100,19 @@ const createQuestion = (countries) => {
 
     // Liste des reponses
     const possibilities = [];
+    const p = [];
+    const p2 = [];
 
     while (possibilities.length < 3) { //On affiche 3 reponses random
         const r = parseInt(Math.random() * countries.length);
         const name = countries[r].translations.fr;
+        const test = countries[r].flag;
+        const test2 = countries[r].translations.fr;
         if (!possibilities.includes(name) && name != country.translations.fr) {
             possibilities.push(name);
+            p.push(test);
+            p2.push(test2)
+            console.log(p)
         }
         else {
             console.log("doublon")
@@ -112,6 +122,8 @@ const createQuestion = (countries) => {
     
 
     possibilities.push(country.translations.fr); //on ajoute la bonne reponse
+    p.push(country.flag);
+    p2.push(country.translations.fr);
     possibilities.sort((a, b) => { //on tri la liste des reponses
         return a.charCodeAt(0) - b.charCodeAt(0);
     });
@@ -121,7 +133,9 @@ const createQuestion = (countries) => {
     const questions = {
         flag: country.flag,
         answer: country.translations.fr,
-        possibilities
+        possibilities,
+        p,
+        p2
     }
 
     return questions;
@@ -156,18 +170,30 @@ const switchState = (states) => {
 
 // Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
+    var t;
     // si oui alors bonne reponse
+    for(var i = 0;i < questions.p2.length;i++){
+        if(userAnswer === questions.p2[i]){
+            console.log(questions.p[i])
+            t = i;
+            console.log(t)
+        }   
+    }
     if (userAnswer === questions.answer) {
         state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('p').innerHTML = '';
+        //state.answer.querySelector("#mauvdrap").setAttribute("src",null );
         goodAnswers++;
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
-        state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
-        state.answer.querySelector('p').innerHTML = `La réponse était : ${questions.answer}`;
-
+        state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
+        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau:`;
+        state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
+        //state.answer.querySelector('#test').innerHTML = `${t}`
+        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : ${questions.answer}`;
+    
     }
     questionNumber++;
     //afficher la reponse dans state answer

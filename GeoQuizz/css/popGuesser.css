@@ -55,6 +55,14 @@ a:active{
     box-shadow: 0px 7px 0px 0px #f02046;
 }
 
+.button2{
+    background-color: rgb(255, 96, 82);
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+.button2:active{
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+
 
 #question, img{
     border-radius: 25%;
