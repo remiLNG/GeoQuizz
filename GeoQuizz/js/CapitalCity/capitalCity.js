@@ -87,5 +87,6 @@ const createQuestion = (countries) => {
 
 
     return questions
+    
 
 }
