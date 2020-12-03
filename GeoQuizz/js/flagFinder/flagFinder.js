@@ -12,6 +12,9 @@ let questions = {};
 let questionNumber = 1;
 let questionTotal = 3;
 let score = 0;
+let userAnswerE = [];
+let rep;
+let rep2;
 
 
 
@@ -103,6 +106,7 @@ const createQuestion = (countries) => {
                 console.log("doublon")
             }
             flag1 = countries[r].flag;
+            userAnswerE.push(countries[r])
             possibilities.push(flag1);
         } else if (flag2 == null) {
             r = parseInt(Math.random() * countries.length)
@@ -111,6 +115,7 @@ const createQuestion = (countries) => {
                 console.log("doublon")
             }
             flag2 = countries[r].flag;
+            userAnswerE.push(countries[r])
             possibilities.push(flag2)
         } else if (flag3 == null) {
             r = parseInt(Math.random() * countries.length)
@@ -119,10 +124,13 @@ const createQuestion = (countries) => {
                 console.log("doublon")
             }
             flag3 = countries[r].flag;
+            userAnswerE.push(countries[r])
             possibilities.push(flag3)
         }
 
     }
+    userAnswerE.push(countries[r])
+    rep2 = country.translations.fr;
     possibilities.push(country.flag) //on ajoute le bon drapeau
 
 
@@ -144,7 +152,8 @@ const createQuestion = (countries) => {
     const questions = {
         pays: country.translations.fr,  //Pays en question
         possibilities, //Les choix de reponses
-        answer: country.flag  //bonne reponse
+        answer: country.flag,  //bonne reponse
+        choix: userAnswerE
     }
 
     return questions;
@@ -202,6 +211,14 @@ const getAnswer = () => {
 
 // Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
+    console.log(questions.choix)
+    for(var i = 0;i < questions.choix.length ;i++){
+        console.log(userAnswer)
+        if(userAnswer === questions.choix[i].flag){
+             rep = questions.choix[i].translations.fr;
+             console.log(rep)
+        }   
+    }
     // si oui alors bonne reponse
     if (userAnswer === questions.answer) {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
@@ -211,7 +228,9 @@ const checkAnswer = (userAnswer) => {
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
-        state.answer.querySelector('p').innerHTML = 'La réponse était  : ';
+        state.answer.querySelector('#mauvaiserep').innerHTML = `Vous avez répondu ${rep}`;
+        state.answer.querySelector('#rep').innerHTML = 'La réponse était  : ';
+        state.answer.querySelector('#bonrep').innerHTML = `${rep2}`;
         state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
     }
     //afficher la reponse dans state answer
