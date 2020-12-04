@@ -34,7 +34,7 @@ function createButton($class, $text) {
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
             document.getElementById('end').innerHTML += `<p> Votre score est: ${goodAnswers} / ${questionTotal} </p>`
-            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu.html">  Retour Menu </a> </p>'
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
     });
