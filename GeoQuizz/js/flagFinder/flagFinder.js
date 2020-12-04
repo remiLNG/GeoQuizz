@@ -39,7 +39,7 @@ function createButton($class, $text) {
             switchState('question'); //on passe à la question suivante
 
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            state.end.querySelector('p').innerHTML = 'Your score is:' + score + '/' + questionTotal;
+            state.end.querySelector('p').innerHTML = 'Votre score est de :' + score + '/' + questionTotal;
             state.end.querySelector('a').innerHTML += '<button class="btn btn-primary"> Retour Menu </button>'
             switchState('end');
         }

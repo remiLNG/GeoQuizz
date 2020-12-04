@@ -1,15 +1,48 @@
 let state = {
     question: null,
     answer:null,
+    end: null
 }
 
-let countries;
+let countries = [];
+let questions = {};
 let questionNumber = 1;
 let questionTotal = 3;
+let score = 0;
+
+
+function createButton($class, $text) {
+    var myDiv = document.getElementById("answer");
+    // On créer le bouton  
+    var button = document.createElement('BUTTON');
+    // Texte du bouton
+    var text = document.createTextNode($text);
+    //Type du bouton
+    button.type = 'button'
+    //classe du bouton
+    button.className += $class;
+    // appending text to button
+    button.appendChild(text);
+    // appending button to div 
+    myDiv.appendChild(button);
+
+    button.addEventListener('click', () => {
+        if (questionNumber <= questionTotal) {
+            generateQuestion(); //On recrée une question
+            switchState('question'); //on passe à la question suivante
+        } else { //Si il n'y en a plus alors on affiche le score dans le end state
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu.html">  Retour Menu </a> </p>'
+            switchState('end');
+        }
+    });
+}
+
 
 const init = async () => {
     state.question = document.querySelector("#question");
     state.answer = document.querySelector("#answer");
+    state.end = document.querySelector("#end");
 
     // Acces à toutes les informations des pays
     const response = await fetch("https://restcountries.eu/rest/v2/all");
@@ -25,6 +58,7 @@ const init = async () => {
 }
 
 window.onload = init;
+
 
 
 // Cliquer sur une des reponses
@@ -59,7 +93,7 @@ const generateQuestion = () => {
 
 
 const createQuestion = (countries) => {
-    const random = parseInt(Math.random() * countries.length);
+    let random = parseInt(Math.random() * countries.length);
 
 
     // Pays aleatoire parmis la liste
@@ -72,7 +106,7 @@ const createQuestion = (countries) => {
     const possibilities = [];
 
     while (possibilities.length < 3) { //On affiche 3 reponses random
-        const r = parseInt(Math.random() * countries.length);
+        let r = parseInt(Math.random() * countries.length);
         while (countries[r].capital == "") {
             r = parseInt(Math.random() * countries.length);
         }
@@ -110,14 +144,22 @@ const switchState = (states) => {
         case 'answer':
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
+            state.end.style.display = 'none';
+            if (state.answer.contains(document.querySelector('button'))) {
+            }
+            else {
+                createButton('btn btn-primary', 'Question suivante')
+            }
             break;
         case 'question':
             state.answer.style.display = 'none';
             state.question.style.display = 'block';
+            state.end.style.display = 'none';
             break;
         default:
             state.answer.style.display = 'none';
             state.question.style.display = 'none';
+            state.end.style.display = 'block';
             break;
     }
 };
@@ -131,6 +173,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  "  + questions.cap + " !";
         state.answer.querySelector('p').innerHTML = '';
+        score++;
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'

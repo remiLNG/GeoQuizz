@@ -30,10 +30,10 @@ function createButton($class, $text) {
 
     button.addEventListener('click', () => {
         if (questionNumber <= questionTotal) {
-            genererateQuestion(); //On recrée une question
+            generateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            document.getElementById('end').innerHTML += `<p> Votre score est: ${goodAnswers} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${goodAnswers} / ${questionTotal} </p>`
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu.html">  Retour Menu </a> </p>'
             switchState('end');
         }
@@ -49,7 +49,7 @@ const init = async () => {
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
-    genererateQuestion();
+    generateQuestion();
     handleClickChoice();
 }
 
@@ -68,7 +68,7 @@ const handleClickChoice = () => {
 
 
 //Generer une question
-const genererateQuestion = () => {
+const generateQuestion = () => {
 
     questions = createQuestion(countries);
 
@@ -112,7 +112,6 @@ const createQuestion = (countries) => {
             possibilities.push(name);
             p.push(test);
             p2.push(test2)
-            console.log(p)
         }
         else {
             console.log("doublon")
@@ -174,16 +173,13 @@ const checkAnswer = (userAnswer) => {
     // si oui alors bonne reponse
     for(var i = 0;i < questions.p2.length;i++){
         if(userAnswer === questions.p2[i]){
-            console.log(questions.p[i])
             t = i;
-            console.log(t)
         }   
     }
     if (userAnswer === questions.answer) {
         state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('p').innerHTML = '';
-        //state.answer.querySelector("#mauvdrap").setAttribute("src",null );
         goodAnswers++;
     } else {
         // si non alors mauvais reponse
@@ -191,7 +187,6 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau:`;
         state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
-        //state.answer.querySelector('#test').innerHTML = `${t}`
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : ${questions.answer}`;
     
     }
