@@ -9,6 +9,9 @@ let questions = {};
 let questionNumber = 1;
 let questionTotal = 3;
 let score = 0;
+let userAnswerD = [];
+let rep;
+let rep2;
 
 
 function createButton($class, $text) {
@@ -113,6 +116,7 @@ const createQuestion = (countries) => {
         const capCity = countries[r].capital;
         if (!possibilities.includes(capCity) && capCity != country.capital) {
             possibilities.push(capCity);
+            userAnswerD.push(countries[r])
         }
         else {
             console.log("doublon")
@@ -121,6 +125,7 @@ const createQuestion = (countries) => {
     }
 
     possibilities.push(country.capital); //on ajoute la bonne reponse
+    userAnswerD.push(country)
     possibilities.sort((a, b) => { //on tri la liste des reponses
         return a.charCodeAt(0) - b.charCodeAt(0);
     });
@@ -128,7 +133,8 @@ const createQuestion = (countries) => {
     const questions = {
         cap: country.capital,
         pays: country.translations.fr,
-        possibilities
+        possibilities,
+        choix: userAnswerD
     }
 
 
@@ -167,6 +173,14 @@ const switchState = (states) => {
 
 // Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
+    for(var i = 0;i < questions.choix.length ;i++){
+        console.log(userAnswer)
+        if(userAnswer === questions.choix[i].capital){
+             rep = questions.choix[i].capital;
+             rep2 = questions.choix[i].translations.fr;
+             console.log(rep)
+        }   
+    }
     // si oui alors bonne reponse
     if (userAnswer === questions.cap) {
         state.answer.querySelector('h2').style.color = 'green'
@@ -178,7 +192,7 @@ const checkAnswer = (userAnswer) => {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
-        state.answer.querySelector('p').innerHTML = "Et non ! La capitale de " +  questions.pays +  " est  " + questions.cap;
+        state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu "+ rep + " qui est la capitale de "+ rep2 +" <br> Alors que la capitale de " +  questions.pays +  " est  " + questions.cap;
 
     }
     questionNumber++;

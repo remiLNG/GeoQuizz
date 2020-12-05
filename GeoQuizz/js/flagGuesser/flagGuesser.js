@@ -179,7 +179,9 @@ const checkAnswer = (userAnswer) => {
     if (userAnswer === questions.answer) {
         state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
-        state.answer.querySelector('p').innerHTML = '';
+        state.answer.querySelector('#mauvrep').innerHTML = '';
+        state.answer.querySelector("#mauvdrap").setAttribute("src",'');
+        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la '+ questions.answer;
         goodAnswers++;
     } else {
         // si non alors mauvais reponse

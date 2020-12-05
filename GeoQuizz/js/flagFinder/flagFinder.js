@@ -221,12 +221,16 @@ const checkAnswer = (userAnswer) => {
     }
     // si oui alors bonne reponse
     if (userAnswer === questions.answer) {
+        state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
-        state.answer.querySelector('p').innerHTML = '';
-        state.answer.querySelector('#goodflag').setAttribute("src", '');
+        state.answer.querySelector('#mauvaiserep').innerHTML = '';
+        state.answer.querySelector('#rep').innerHTML = '';
+        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau de le/la '+ rep2 + ' est bien celui ci';
+        state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
         score++;
     } else {
         // si non alors mauvais reponse
+        state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
         state.answer.querySelector('#mauvaiserep').innerHTML = `Vous avez répondu ${rep}`;
         state.answer.querySelector('#rep').innerHTML = 'La réponse était  : ';
