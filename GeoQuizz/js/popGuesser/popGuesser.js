@@ -37,8 +37,8 @@ function createButton($class, $text) {
 
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
         
-            document.getElementById('end').innerHTML += `<p>Votre score est de : ${score} / ${questionTotal}</p>`;
-            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu.html">  Retour Menu </a> </p>'
+            document.getElementById('end').innerHTML += `<p>Votre score est: ${score} / ${questionTotal}</p>`;
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
     });

@@ -38,10 +38,9 @@ function createButton($class, $text) {
         if (questionNumber <= questionTotal) {
             genererateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
-
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            state.end.querySelector('p').innerHTML = 'Votre score est de :' + score + '/' + questionTotal;
-            state.end.querySelector('a').innerHTML += '<button class="btn btn-primary"> Retour Menu </button>'
+            document.getElementById('end').innerHTML += `<p> Votre score est: ${goodAnswers} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
     });
@@ -109,7 +108,7 @@ const createQuestion = (countries) => {
         var flag3;
         if (flag1 == null) {
             r = parseInt(Math.random() * countries.length)
-            while(countries[r].flag == country.flag){
+            while (countries[r].flag == country.flag) {
                 r = parseInt(Math.random() * countries.length);
                 console.log("doublon")
             }
@@ -118,7 +117,7 @@ const createQuestion = (countries) => {
             possibilities.push(flag1);
         } else if (flag2 == null) {
             r = parseInt(Math.random() * countries.length)
-            while(countries[r].flag == country.flag || countries[r].flag == flag1){
+            while (countries[r].flag == country.flag || countries[r].flag == flag1) {
                 r = parseInt(Math.random() * countries.length);
                 console.log("doublon")
             }
@@ -127,7 +126,7 @@ const createQuestion = (countries) => {
             possibilities.push(flag2)
         } else if (flag3 == null) {
             r = parseInt(Math.random() * countries.length)
-            while(countries[r].flag == country.flag || countries[r].flag == flag1 || countries[r].flag == flag2 ){
+            while (countries[r].flag == country.flag || countries[r].flag == flag1 || countries[r].flag == flag2) {
                 r = parseInt(Math.random() * countries.length);
                 console.log("doublon")
             }
@@ -219,13 +218,13 @@ const getAnswer = () => {
 
 // Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
-    //console.log(questions.choix)
-    for(var i = 0;i < questions.choix.length ;i++){
-        //console.log(userAnswer)
-        if(userAnswer === questions.choix[i].flag){
-             rep = questions.choix[i].translations.fr;
-             //console.log(rep)
-        }   
+    console.log(questions.choix)
+    for (var i = 0; i < questions.choix.length; i++) {
+        console.log(userAnswer)
+        if (userAnswer === questions.choix[i].flag) {
+            rep = questions.choix[i].translations.fr;
+            console.log(rep)
+        }
     }
     // si oui alors bonne reponse
     if (userAnswer === questions.answer) {
