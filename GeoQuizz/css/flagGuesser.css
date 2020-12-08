@@ -19,7 +19,7 @@ body {
 
 div.jumbotron {
     width: 50%;
-    margin-top: 15%;
+    margin-top: 5%;
     margin-left: 25%;
     background-color: rgba(255, 255, 255, 0.2);
     background-size: cover;
@@ -35,7 +35,6 @@ div.jumbotron #flag{
     max-width: 100%;
     height: auto;
     border-radius: 25px 25px 25px 25px;
-
 }
 
 /* Écriture  */
@@ -44,7 +43,7 @@ div.jumbotron #flag{
     text-align: center;
     padding-top: 3rem;
     font-family: milky; 
-    font-size: 100%; 
+    font-size: 200%; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
@@ -133,7 +132,6 @@ a:active{
   
   li:hover {
       background-color: #0a6599;
-      padding: 2%;
 }
   
   .btnanswer:active {

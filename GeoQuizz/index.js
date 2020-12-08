@@ -7,6 +7,8 @@ const PORT = 8085;
 app.use('/css',express.static( __dirname +'/css'));
 app.use('/assets',express.static( __dirname +'/assets'));
 app.use('/js',express.static( __dirname +'/js'));
+app.use('/fonts',express.static( __dirname +'/fonts'));
+
 
 app.get('/menu', (req,res) => {
     res.sendFile(path.join( __dirname, "menu.html"))

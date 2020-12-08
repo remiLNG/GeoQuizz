@@ -14,6 +14,20 @@ body {
     background-position: center !important;
 }
 
+#drapeau1 {
+    width: 25%;
+    height: auto;
+    border-radius: 25px 25px 25px 25px;
+    cursor: pointer;
+}
+
+
+#drapeau2 {
+    width: 25%;
+    height: auto;
+    border-radius: 25px 25px 25px 25px;
+    cursor: pointer;
+}
 
 #nbquestion{
     padding-top: 3rem;

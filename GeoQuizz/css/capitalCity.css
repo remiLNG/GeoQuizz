@@ -2,9 +2,9 @@
     src: url( ../fonts/MilkyNice.ttf );
     font-family: milky;
 }
+  
 
 body {
-    background-image: url("../assets/background.png");
     background-image: url("../assets/jeux.png");
     background-size:cover;
     height:100%;
@@ -14,15 +14,19 @@ body {
     background-position: center !important;
 }
 
-#question, img{
-    height: 100px;
+
+/* Partie drapeau et conteneur du drapeau  */
+
+#nbquestion{
+    padding-top: 3rem;
 }
 
 
+/* Écriture  */
 
 .police{
     text-align: center;
-    padding-top: 2rem;
+    padding-top: 3rem;
     font-family: milky; 
     font-size: 200%; 
     font-style: normal; 
@@ -31,24 +35,23 @@ body {
     line-height: 26.4px; 
 }
 
-#question{
-    margin-top: 100px;
-    text-align: center;
+
+/* Partie Liste des réponses  */
+
+ul{
+    list-style: none;
+    justify-content: space-around;
+    display: flex;
 }
 
-div.jumbotron #flag1 #flag2 #flag3 #flag4{
-    max-width: 100%;
-    height: auto;
+ul.jumbotron {
+    background-color:rgba(255, 255, 255, 0.2);
     border-radius: 25px 25px 25px 25px;
-
-}
-div.jumbotron {
-    width: 50%;
     margin-left: 25%;
-    background-color: rgba(255, 255, 255, 0.2);
-    background-size: cover;
-    border-radius: 25px 25px 25px 25px;
+    margin-right: 25%;
 }
+
+/* Partie pour les boutons */
 
 a{
     text-decoration: none !important;
@@ -85,38 +88,37 @@ a:active{
     margin-top: 3%;
 }
 
-#conteneurflag {
-    align-items: center;
+/* pour le drapeau */
+
+#question, img{
+    border-radius: 25%;
 }
 
-#flag1 {
-    width: 35%;
-    height: auto;
-    border-radius: 25px 25px 25px 25px;
-    cursor: pointer;
-}
 
-#flag2 {
-    width: 35%;
-    height: auto;
-    border-radius: 25px 25px 25px 25px;
-    cursor: pointer;
-    margin-left: 5%;
-}
+/* Pour les réponses */ 
 
-#flag3 {
-    width: 35%;
-    height: auto;
-    border-radius: 25px 25px 25px 25px;
+.btnanswer {
+    display: inline-block;
+    padding: 1%;
+    font-size: 175%;
     cursor: pointer;
-    margin-top: 5%;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #047cc2;
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0px 7px 0px 0px rgb(51, 157, 255);
+    transition: all 0.1s;
+  }
+  
+  li:hover {
+      background-color: #0a6599;
 }
-
-#flag4 {
-    width: 35%;
-    height: auto;
-    border-radius: 25px 25px 25px 25px;
-    cursor: pointer;
-    margin-top: 5%;
-    margin-left: 5%;
+  
+  .btnanswer:active {
+    background-color: #047cc2;
+    box-shadow: 0 5px rgb(51, 157, 255);
+    transform: translateY(4px);
 }
