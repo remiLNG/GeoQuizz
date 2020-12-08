@@ -10,11 +10,12 @@ let state = {
 let countries = [];
 let questions = {};
 let questionNumber = 1;
-let questionTotal = 3;
+let questionTotal = 100;
 let score = 0;
 let userAnswerE = [];
 let rep;
 let rep2;
+let paysQuestion = [];
 
 
 
@@ -86,10 +87,17 @@ const genererateQuestion = () => {
 
 
 const createQuestion = (countries) => {
-    const random = parseInt(Math.random() * countries.length);
+    var random = parseInt(Math.random() * countries.length);
 
     // Pays aleatoire parmis la liste
+    while(paysQuestion.includes(countries[random])){
+        console.log(countries[random])
+        random = parseInt(Math.random() * countries.length);
+        console.log("dejavu")
+    }
+    paysQuestion.push(countries[random]);
     const country = countries[random];
+    console.log(paysQuestion)
 
     var possibilities = [];
 
@@ -211,12 +219,12 @@ const getAnswer = () => {
 
 // Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
-    console.log(questions.choix)
+    //console.log(questions.choix)
     for(var i = 0;i < questions.choix.length ;i++){
-        console.log(userAnswer)
+        //console.log(userAnswer)
         if(userAnswer === questions.choix[i].flag){
              rep = questions.choix[i].translations.fr;
-             console.log(rep)
+             //console.log(rep)
         }   
     }
     // si oui alors bonne reponse
