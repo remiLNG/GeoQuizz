@@ -13,6 +13,15 @@ let questionTotal = 3;
 let goodAnswers = 0;
 let userAnswerD;
 
+// SOUNDS
+const WIN = new Audio();
+WIN.src = "./sounds/clapclap.mp3";
+WIN.volume = 0.1;
+
+const LOOSE = new Audio();
+LOOSE.src = "./sounds/aww.mp3";
+LOOSE.volume = 0.1;
+
 function createButton($class, $text) {
     var myDiv = document.getElementById("answer");
     // On créer le bouton  
@@ -183,6 +192,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector("#mauvdrap").setAttribute("src",'');
         state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la '+ questions.answer;
         goodAnswers++;
+        WIN.play();
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
@@ -190,7 +200,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau:`;
         state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : ${questions.answer}`;
-    
+        LOOSE.play();
     }
     questionNumber++;
     //afficher la reponse dans state answer

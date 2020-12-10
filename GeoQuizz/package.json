@@ -18,7 +18,8 @@
     "mocha": "^8.2.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC"
