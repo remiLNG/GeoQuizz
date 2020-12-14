@@ -13,14 +13,6 @@ let questionTotal = 3;
 let goodAnswers = 0;
 let userAnswerD;
 
-// SOUNDS
-const WIN = new Audio();
-WIN.src = "./sounds/clapclap.mp3";
-WIN.volume = 0.1;
-
-const LOOSE = new Audio();
-LOOSE.src = "./sounds/aww.mp3";
-LOOSE.volume = 0.1;
 
 function createButton($class, $text) {
     var myDiv = document.getElementById("answer");
@@ -42,7 +34,7 @@ function createButton($class, $text) {
             generateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            document.getElementById('end').innerHTML += `<p> Votre score est: ${goodAnswers} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${goodAnswers} / ${questionTotal} </p>`
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }

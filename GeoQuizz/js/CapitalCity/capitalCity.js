@@ -188,12 +188,13 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  "  + questions.cap + " !";
         state.answer.querySelector('p').innerHTML = '';
         score++;
+        WIN.play();
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
-        state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu "+ rep + " qui est la capitale de "+ rep2 +" <br> Alors que la capitale de " +  questions.pays +  " est  " + questions.cap;
-
+        state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu "+ rep + " qui est la capitale de "+ rep2 +" <br> Alors que la capitale de " +  questions.pays +  " est  " + questions.cap + ' !';
+        LOOSE.play();
     }
     questionNumber++;
     //afficher la reponse dans state answer

@@ -192,12 +192,14 @@ const checkAnswer = (userAnswer) => {
     // si oui alors bonne reponse
     if (userAnswer === questions.answer) {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
-        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.';
+        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' est plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.';
         score++;
+        WIN.play();
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
-        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.' ;
+        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' est plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.' ;
+        LOOSE.play();
     }
     //afficher la reponse dans state answer
     questionNumber++;

@@ -232,17 +232,18 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
         state.answer.querySelector('#mauvaiserep').innerHTML = '';
         state.answer.querySelector('#rep').innerHTML = '';
-        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau de le/la '+ rep2 + ' est bien celui ci';
+        state.answer.querySelector('#bonrep').innerHTML = 'C' + 'est bien le drapeau de le/la '+ rep2;
         state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
         score++;
+        WIN.play();
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
         state.answer.querySelector('#mauvaiserep').innerHTML = `Vous avez répondu ${rep}`;
-        state.answer.querySelector('#rep').innerHTML = 'La réponse était  : ';
-        state.answer.querySelector('#bonrep').innerHTML = `${rep2}`;
+        state.answer.querySelector('#rep').innerHTML = 'Alors que le drapeau de le/la ' + rep2 + ' est celui là :';
         state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
+        LOOSE.play();
     }
     //afficher la reponse dans state answer
     questionNumber++;
