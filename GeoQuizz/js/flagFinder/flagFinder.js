@@ -57,6 +57,10 @@ const init = async () => {
     state.answer = document.querySelector("#answer");
     state.end = document.querySelector("#end");
 
+    let btnNormal = document.querySelector("#normal")
+    let btnHard = document.querySelector("#hard")
+
+
     // Acces à toutes les informations des pays
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
@@ -83,10 +87,17 @@ const init = async () => {
 [countries[75],countries[13],countries[24],countries[159]],
 [countries[10],countries[68],countries[160],countries[100]]];
 
-
+btnNormal.addEventListener('click',() =>{
+    hardmode = false;
     genererateQuestion();
     getAnswer();
+})
 
+btnHard.addEventListener('click',() =>{
+    genererateQuestion();
+    getAnswer();
+})
+   
 }
 
 window.onload = init;
@@ -94,6 +105,7 @@ window.onload = init;
 
 //Generer une question
 const genererateQuestion = () => {
+    switchState('question')
 
     questions = createQuestion(countries,listHard);
 
@@ -113,21 +125,16 @@ const genererateQuestion = () => {
 
 
 const createQuestion = (countries,listHard) => {
-    console.log(listHard)
     var country;
     if (hardmode) {
         //On récupere une liste aléatoire de drapeaux dans la liste de question
         var random = parseInt(Math.random() * listHard.length);
         var rand1sur4 = parseInt(Math.random() * 4);
 
-        console.log(random)
-        console.log(rand1sur4)
         var tmp= listHard[random]
         //Dans cette liste on choisit un des drapeux qui sera la bonne réponse
         const counttemp = listHard[random];
-        console.log(counttemp)
         country =  counttemp[rand1sur4];
-        console.log(country)
         userAnswerE.push(country);
 
         //On crée en ajoute a possibilities pour ne pas a voir a changer le reste de la fonction
@@ -147,13 +154,11 @@ const createQuestion = (countries,listHard) => {
 
         // Pays aleatoire parmis la liste
         while (paysQuestion.includes(countries[random])) {
-            console.log(countries[random])
             random = parseInt(Math.random() * countries.length);
             console.log("dejavu")
         }
         paysQuestion.push(countries[random]);
         country = countries[random];
-        console.log(paysQuestion)
 
         var possibilities = [];
 
@@ -227,10 +232,16 @@ const createQuestion = (countries,listHard) => {
 //Passer d'un état à l'autre (question, verification de reponse)
 const switchState = (states) => {
     switch (states) {
+        case 'select':
+            state.answer.style.display = 'none';
+            state.question.style.display = 'none';
+            state.end.style.display = 'none';
+            break;
         case 'answer':
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
             state.end.style.display = 'none';
+            state.selectMode.style.display = 'none';
             if (state.answer.contains(document.querySelector('button'))) {
             }
             else {
@@ -241,9 +252,11 @@ const switchState = (states) => {
             state.answer.style.display = 'none';
             state.question.style.display = 'block';
             state.end.style.display = 'none';
+            state.selectMode.style.display = 'none';
             break;
         default:
             state.answer.style.display = 'none';
+            state.selectMode.style.display = 'none';
             state.question.style.display = 'none';
             state.end.style.display = 'block';
             break;
@@ -275,12 +288,10 @@ const getAnswer = () => {
 
 // Verifier si c'est la bonne reponse
 const checkAnswer = (userAnswer) => {
-    console.log(questions.choix)
     for (var i = 0; i < questions.choix.length; i++) {
         console.log(userAnswer)
         if (userAnswer === questions.choix[i].flag) {
             rep = questions.choix[i].translations.fr;
-            console.log(rep)
         }
     }
     // si oui alors bonne reponse
