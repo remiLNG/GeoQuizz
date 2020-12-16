@@ -186,11 +186,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('#mauvrep').innerHTML = '';
         state.answer.querySelector("#mauvdrap").setAttribute("src",'');
-<<<<<<< HEAD
         state.answer.querySelector('#bonrep').innerHTML = `Le drapeau était bien celui de le/la : ` + questions.answer ;
-=======
-        state.answer.querySelector('#bonrep').innerHTML = `Le drapeau était bien celui de le/la :` + questions.answer ;
->>>>>>> parent of 31c752b... Revert "#64 Amélioration de la qualité du code pour FlagGuesser"
         goodAnswers++;
         WIN.play();
     } else {
