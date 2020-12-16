@@ -1,6 +1,10 @@
 const express = require('express')
 const path = require('path')
 const app = express()
+const flagfinder = require('./routers/FlagFinder');
+const flagguesser = require('./routers/flagguesser');
+const popguesser = require('./routers/PopGuesser');
+const capitalcity = require('./routers/CapitalCity');
 
 const PORT = 8085;
 
@@ -15,21 +19,13 @@ app.get('/menu', (req,res) => {
     res.sendFile(path.join( __dirname, "menu.html"))
 })
 
-app.get('/flagguesser', (req,res) => {
-    res.sendFile(path.join( __dirname, "flagguesser.html"))
-})
+app.use('/flagfinder', flagfinder);
 
-app.get('/flagfinder', (req,res) => {
-    res.sendFile(path.join( __dirname, "flagfinder.html"))
-})
+app.use('/flagguesser', flagguesser);
 
-app.get('/CapitalCity', (req,res) => {
-    res.sendFile(path.join( __dirname, "CapitalCity.html"))
-})
+app.use('/PopGuesser', popguesser);
 
-app.get('/PopGuesser', (req,res) => {
-    res.sendFile(path.join( __dirname, "PopGuesser.html"))
-})
+app.use('/CapitalCity', capitalcity);
 
 app.get('/Regle', (req,res) => {
     res.sendFile(path.join( __dirname, "Regle.html"))
