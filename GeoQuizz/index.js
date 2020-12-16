@@ -1,10 +1,13 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+const express = require('express');
+const path = require('path');
+const app = express();
+const http = require('http').createServer(app);
+
 const flagfinder = require('./routers/FlagFinder');
 const flagguesser = require('./routers/flagguesser');
 const popguesser = require('./routers/PopGuesser');
 const capitalcity = require('./routers/CapitalCity');
+const multiplayer = require('./routers/multiplayer');
 
 const PORT = 8085;
 
@@ -27,10 +30,12 @@ app.use('/PopGuesser', popguesser);
 
 app.use('/CapitalCity', capitalcity);
 
+app.use('/Multiplayer', multiplayer);
+
 app.get('/Regle', (req,res) => {
     res.sendFile(path.join( __dirname, "Regle.html"))
 })
 
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Server currently running on port ${PORT}`)
   })
