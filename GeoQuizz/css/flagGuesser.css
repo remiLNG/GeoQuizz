@@ -113,6 +113,12 @@ a:active{
     margin-top: 5%;
 }
 
+/* Texte bonne réponse  */
+
+#mauvrep {
+    margin-top: 2%;
+}
+
 /* Texte mauvaise réponse  */
 
 #bonrep {
