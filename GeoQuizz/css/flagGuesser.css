@@ -15,6 +15,10 @@ body {
 }
 
 
+h2 {
+    font-size: 150%  !important;
+}
+
 /* Partie drapeau et conteneur du drapeau  */
 
 div.jumbotron {
@@ -50,6 +54,15 @@ div.jumbotron #flag{
     line-height: 26.4px; 
 }
 
+/* div end */
+#end {
+    position: relative;
+    margin-top: 20%;
+}
+
+div#end p:first-child {
+    font-size: 170%;
+}
 
 /* Partie Liste des réponses  */
 
@@ -103,6 +116,26 @@ a:active{
 
 #pfin{
     margin-top: 3%;
+}
+
+/* Texte bonne réponse  */
+
+#mauvrep {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+/* Texte mauvaise réponse  */
+
+#bonrep {
+    margin-top: 2%;
+}
+
+/* Bouton retour menu */
+
+#retourmenu{
+    display: inline-block;
+    margin-top: 2%;
 }
 
 /* pour le drapeau */
