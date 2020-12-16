@@ -37,6 +37,12 @@ div.jumbotron #flag{
     border-radius: 25px 25px 25px 25px;
 }
 
+#mauvdrap{
+    max-width: 20%;
+    height: auto;
+    border-radius: 25px 25px 25px 25px;
+}
+
 /* Écriture  */
 
 .police{
@@ -77,15 +83,16 @@ a{
     position: relative;
     padding: 0.7%;
     font-family: milky;
-    font-size: 150%;
+    font-size: 100%;
     border-radius: 20px;
     box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
-    transition: all 0.1s;
+    transition: all 0.2s;
 }
 
 a:hover {
     background-color: #e94b68;
-    font-size: 175%;
+    font-size: 125%;
+    cursor: pointer;
 }
 
 a:active{
@@ -97,12 +104,26 @@ a:active{
     background-color: rgb(255, 96, 82);
     box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
 }
+
 .button2:active{
     box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
 }
 
 #pfin{
-    margin-top: 3%;
+    margin-top: 5%;
+}
+
+/* Texte mauvaise réponse  */
+
+#bonrep {
+    margin-top: 2%;
+}
+
+/* Bouton retour menu */
+
+#retourmenu{
+    display: inline-block;
+    margin-top: 2%;
 }
 
 /* pour le drapeau */
