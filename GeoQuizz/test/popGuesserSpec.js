@@ -1,6 +1,14 @@
 const { Builder, By, Key, util } = require('selenium-webdriver');
 let webdriver = require('selenium-webdriver'), until = webdriver.until;
 async function testFlagFinder() {
+    //N'oubliez pas d'installer le driver correspondant à votre navigateur et de remplacer "chrome" par votre navigateur
+    /*
+    https://www.selenium.dev/selenium/docs/api/javascript/index.html lien vers les drivers
+    'chrome' pour Goggle chrome
+    'firefox' pour Mozilla firefox
+    'ie' pour Internet explorer
+    'edge' pour Microsoft edge
+    */
     let driver = await new Builder().forBrowser('chrome').build();
 
     await driver.get("C:/Users/KHALI/Desktop/marais/projet-web-2020-marais/GeoQuizz/popGuesser.html");
@@ -33,5 +41,4 @@ async function testFlagFinder() {
     console.log("le button de retour est affiché : " + await driver.wait(until.elementLocated(By.className('button2')), 10000).isDisplayed());
     driver.wait(until.elementLocated(By.className('button2')), 10000).click();   
     driver.quit();
-
 }testFlagFinder();
