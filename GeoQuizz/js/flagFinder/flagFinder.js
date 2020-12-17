@@ -10,7 +10,7 @@ let state = {
 let countries = [];
 let questions = {};
 let questionNumber = 1;
-let questionTotal = 100;
+let questionTotal = 3;
 let score = 0;
 let userAnswerE = [];
 let rep;
@@ -29,7 +29,7 @@ function createButton($class, $text) {
     // Texte du bouton
     var text = document.createTextNode($text);
     //Type du bouton
-    button.type = 'button'
+    button.id = "lol"
     //classe du bouton
     button.className += $class;
     // appending text to button 
@@ -42,7 +42,7 @@ function createButton($class, $text) {
             genererateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            document.getElementById('end').innerHTML += `<p> Votre score est: ${goodAnswers} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} </p>`
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
@@ -57,47 +57,46 @@ const init = async () => {
     state.answer = document.querySelector("#answer");
     state.end = document.querySelector("#end");
 
-    let btnNormal = document.querySelector("#normal")
-    let btnHard = document.querySelector("#hard")
-
-
     // Acces à toutes les informations des pays
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
-    listHard = [[countries[184],countries[46],countries[5],countries[146]],
-[countries[105],countries[147],countries[178],countries[202]],
-[countries[130],countries[157],countries[185],countries[174]],
-[countries[109],countries[112],countries[106],countries[144]],
-[countries[204],countries[205],countries[174],countries[199]],
-[countries[68],countries[160],countries[100],countries[92]],
-[countries[51],countries[66],countries[243],countries[11]],
-[countries[94],countries[137],countries[41],countries[198]],
-[countries[142],countries[200],countries[45],countries[52]],
-[countries[53],countries[54],countries[223],countries[154]],
-[countries[214],countries[116],countries[120],countries[237]],
-[countries[247],countries[220],countries[108],countries[67]],
-[countries[135],countries[126],countries[239],countries[58]],
-[countries[222],countries[107],countries[37],countries[102]],
-[countries[26],countries[85],countries[129],countries[153]],
-[countries[77],countries[157],countries[130],countries[185]],
-[countries[130],countries[157],countries[174],countries[57]],
-[countries[13],countries[159],countries[234],countries[55]],
-[countries[163],countries[75],countries[24],countries[234]],
-[countries[75],countries[13],countries[24],countries[159]],
-[countries[10],countries[68],countries[160],countries[100]]];
+    listHard = [[countries[184], countries[46], countries[5], countries[146]],
+    [countries[105], countries[147], countries[178], countries[202]],
+    [countries[130], countries[157], countries[185], countries[174]],
+    [countries[109], countries[112], countries[106], countries[144]],
+    [countries[204], countries[205], countries[174], countries[199]],
+    [countries[68], countries[160], countries[100], countries[92]],
+    [countries[51], countries[66], countries[243], countries[11]],
+    [countries[94], countries[137], countries[41], countries[198]],
+    [countries[142], countries[200], countries[45], countries[52]],
+    [countries[53], countries[54], countries[223], countries[154]],
+    [countries[214], countries[116], countries[120], countries[237]],
+    [countries[247], countries[220], countries[108], countries[67]],
+    [countries[135], countries[126], countries[239], countries[58]],
+    [countries[222], countries[107], countries[37], countries[102]],
+    [countries[26], countries[85], countries[129], countries[153]],
+    [countries[77], countries[157], countries[130], countries[185]],
+    [countries[130], countries[157], countries[174], countries[57]],
+    [countries[13], countries[159], countries[234], countries[55]],
+    [countries[163], countries[75], countries[24], countries[234]],
+    [countries[75], countries[13], countries[24], countries[159]],
+    [countries[10], countries[68], countries[160], countries[100]]];
 
-btnNormal.addEventListener('click',() =>{
-    hardmode = false;
-    genererateQuestion();
-    getAnswer();
-})
 
-btnHard.addEventListener('click',() =>{
-    genererateQuestion();
+    let btnNormal = document.querySelector("#normal")
+    let btnHard = document.querySelector("#hard")
+
+    btnNormal.addEventListener('click', () => {
+        hardmode = false;
+        genererateQuestion();
+
+    })
+    btnHard.addEventListener('click', () => {
+        genererateQuestion();
+    })
+
     getAnswer();
-})
-   
 }
 
 window.onload = init;
@@ -105,9 +104,10 @@ window.onload = init;
 
 //Generer une question
 const genererateQuestion = () => {
+
     switchState('question')
 
-    questions = createQuestion(countries,listHard);
+    questions = createQuestion(countries, listHard);
 
     //Aficher suivi des questions
     state.question.querySelector("#suiviQuestion").innerHTML = " Question " + questionNumber + " / " + questionTotal;
@@ -124,30 +124,30 @@ const genererateQuestion = () => {
 }
 
 
-const createQuestion = (countries,listHard) => {
+const createQuestion = (countries, listHard) => {
     var country;
     if (hardmode) {
         //On récupere une liste aléatoire de drapeaux dans la liste de question
         var random = parseInt(Math.random() * listHard.length);
         var rand1sur4 = parseInt(Math.random() * 4);
 
-        var tmp= listHard[random]
+        var tmp = listHard[random]
         //Dans cette liste on choisit un des drapeux qui sera la bonne réponse
         const counttemp = listHard[random];
-        country =  counttemp[rand1sur4];
+        country = counttemp[rand1sur4];
         userAnswerE.push(country);
 
         //On crée en ajoute a possibilities pour ne pas a voir a changer le reste de la fonction
         var possibilities = [];
-        for (let i= 0; i < 4; i++) {
-            if( country != tmp[i]){
+        for (let i = 0; i < 4; i++) {
+            if (country != tmp[i]) {
                 possibilities.push(tmp[i].flag);
                 userAnswerE.push(tmp[i]);
             }
         }
         possibilities.push(country.flag);
         rep2 = country.translations.fr;
-    } 
+    }
     else {
 
         var random = parseInt(Math.random() * countries.length);
@@ -232,22 +232,24 @@ const createQuestion = (countries,listHard) => {
 //Passer d'un état à l'autre (question, verification de reponse)
 const switchState = (states) => {
     switch (states) {
-        case 'select':
-            state.answer.style.display = 'none';
-            state.question.style.display = 'none';
-            state.end.style.display = 'none';
-            break;
         case 'answer':
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
-            if (state.answer.contains(document.querySelector('button'))) {
-            }
-            else {
+            if(state.answer.contains(document.getElementById('lol'))){
+               
+            }else{
                 createButton('btn btn-primary', 'Question suivante')
             }
             break;
+        case 'select':
+            state.selectMode.style.display = 'block';
+            state.answer.style.display = 'none';
+            state.question.style.display = 'none';
+            state.end.style.display = 'none';
+            break;
+      
         case 'question':
             state.answer.style.display = 'none';
             state.question.style.display = 'block';
