@@ -14,16 +14,20 @@ let goodAnswers = 0;
 let userAnswerD;
 
 
-function createButton($class, $text) {
+function createButton($class, $text, $id) {
     var myDiv = document.getElementById("answer");
     // On créer le bouton  
-    var button = document.createElement('BUTTON');
+    var button = document.createElement('a');
     // Texte du bouton
     var text = document.createTextNode($text);
-    //Type du bouton
-    button.type = 'button'
-    //classe du bouton
-    button.className += $class;
+    // Classe du bouton
+    if(  !($class === undefined) ) {
+        button.className += $class;
+    }
+    // ID du bouton
+    if(  !($id === undefined) ) {
+        button.id += $id;
+    }
     // appending text to button
     button.appendChild(text);
     // appending button to div 
@@ -34,7 +38,7 @@ function createButton($class, $text) {
             generateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            document.getElementById('end').innerHTML += `<p> Votre score est de : ${goodAnswers} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${goodAnswers} / ${questionTotal} ! </p>`
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
@@ -148,10 +152,10 @@ const switchState = (states) => {
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
             state.end.style.display = 'none';
-            if (state.answer.contains(document.querySelector('button'))) {
+            if (state.answer.contains(document.querySelector('a'))) {
             }
             else {
-                createButton('btn btn-primary', 'Question suivante')
+                createButton('button2', 'Question suivante', 'retourmenu')
             }
             break;
         case 'question':
@@ -182,16 +186,16 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('#mauvrep').innerHTML = '';
         state.answer.querySelector("#mauvdrap").setAttribute("src",'');
-        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la '+ questions.answer;
+        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : '+ questions.answer;
         goodAnswers++;
         WIN.play();
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
-        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau:`;
+        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau :`;
         state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
-        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : ${questions.answer}`;
+        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
         LOOSE.play();
     }
     questionNumber++;

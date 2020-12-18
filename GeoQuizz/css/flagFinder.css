@@ -66,6 +66,7 @@ a{
 a:hover {
     background-color: #e94b68;
     font-size: 175%;
+    cursor: pointer;
 }
 
 a:active{

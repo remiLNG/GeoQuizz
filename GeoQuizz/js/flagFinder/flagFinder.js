@@ -22,27 +22,31 @@ let listHard = [];
 
 
 
-function createButton($class, $text) {
+function createButton($class, $text, $id) {
     var myDiv = document.getElementById("answer");
     // On créer le bouton  
-    var button = document.createElement('BUTTON');
+    var button = document.createElement('a');
     // Texte du bouton
     var text = document.createTextNode($text);
-    //Type du bouton
-    button.id = "lol"
-    //classe du bouton
-    button.className += $class;
-    // appending text to button 
+    // Classe du bouton
+    if(  !($class === undefined) ) {
+        button.className += $class;
+    }
+    // ID du bouton
+    if(  !($id === undefined) ) {
+        button.id += $id;
+    }
+    // appending text to button
     button.appendChild(text);
     // appending button to div 
     myDiv.appendChild(button);
 
     button.addEventListener('click', () => {
         if (questionNumber <= questionTotal) {
-            genererateQuestion(); //On recrée une question
+            generateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} </p>`
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${goodAnswers} / ${questionTotal} ! </p>`
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
