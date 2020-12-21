@@ -1,6 +1,7 @@
 // Variables globales
 
 let state = {
+    selectMode: null,
     question: null,
     answer: null,
     end: null
@@ -12,6 +13,9 @@ let questionNumber = 1;
 let questionTotal = 3;
 let goodAnswers = 0;
 let userAnswerD;
+let hardmode = true;
+let champ = document.getElementById("champ");
+
 
 
 function createButton($class, $text, $id) {
@@ -45,17 +49,46 @@ function createButton($class, $text, $id) {
     });
 }
 
+const InputManager = () => {
+    champ.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          document.getElementById("myBtn").click();
+          console.log(champ.value)
+        }
+      });
+}
+
+
 const init = async () => {
     state.question = document.querySelector("#question");
     state.answer = document.querySelector("#answer");
     state.end = document.querySelector("#end");
+    state.selectMode = document.querySelector("#select");
 
     // Acces à toutes les informations des pays
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
-    generateQuestion();
+ 
+    let btnNormal = document.querySelector("#normal")
+    let btnHard = document.querySelector("#hard")
+
+    btnNormal.addEventListener('click', () => {
+        hardmode = false;
+        generateQuestion();
+
+    })
+
+    btnHard.addEventListener('click', () => {
+        generateQuestion();
+        InputManager()
+    })
     handleClickChoice();
+
 }
 
 
@@ -87,10 +120,13 @@ const generateQuestion = () => {
     state.question.querySelector("img").setAttribute("src", questions.flag);
 
     //Ajouter les choix de reponses sur la page
-    const reponses = questions.possibilities.map((possibility) => {
-        return `<li id="response" class="btnanswer police">${possibility}</li>`;
-    });
-    state.question.querySelector("ul").innerHTML = reponses.join('');
+    if(!hardmode){
+        const reponses = questions.possibilities.map((possibility) => {
+            return `<li id="response" class="btnanswer police">${possibility}</li>`;
+        });
+        state.question.querySelector("ul").innerHTML = reponses.join('');
+    }
+ 
 }
 
 window.onload = init;
@@ -181,7 +217,7 @@ const checkAnswer = (userAnswer) => {
             t = i;
         }   
     }
-    if (userAnswer === questions.answer) {
+    if (userAnswer === questions.answer || champ.value == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")|| champ.value == questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
         state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('#mauvrep').innerHTML = '';
@@ -189,12 +225,21 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : '+ questions.answer;
         goodAnswers++;
         WIN.play();
-    } else {
+    } else{
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau :`;
-        state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
+        if(!hardmode){
+            state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
+        }
+        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
+        LOOSE.play();
+    }
+    if( champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value!= questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
+        state.answer.querySelector('h2').style.color = 'red'
+        state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
+        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
         LOOSE.play();
     }

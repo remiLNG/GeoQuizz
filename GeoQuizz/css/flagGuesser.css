@@ -225,3 +225,9 @@ a:active{
     box-shadow: 0 5px rgb(51, 157, 255);
     transform: translateY(4px);
 }
+
+
+/* Timer */
+#myBtn{
+    display:none;
+}
