@@ -46,7 +46,7 @@ function createButton($class, $text, $id) {
             generateQuestion(); //On recrée une question
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
-            document.getElementById('end').innerHTML += `<p> Votre score est de : ${goodAnswers} / ${questionTotal} ! </p>`
+            document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} ! </p>`
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
@@ -93,11 +93,11 @@ const init = async () => {
 
     btnNormal.addEventListener('click', () => {
         hardmode = false;
-        genererateQuestion();
+        generateQuestion();
 
     })
     btnHard.addEventListener('click', () => {
-        genererateQuestion();
+        generateQuestion();
     })
 
     getAnswer();
@@ -107,7 +107,7 @@ window.onload = init;
 
 
 //Generer une question
-const genererateQuestion = () => {
+const generateQuestion = () => {
 
     switchState('question')
 
@@ -241,10 +241,11 @@ const switchState = (states) => {
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
-            if(state.answer.contains(document.getElementById('lol'))){
-               
-            }else{
-                createButton('btn btn-primary', 'Question suivante')
+            if (state.answer.contains(document.querySelector('a'))) {
+                break;
+            }
+            else {
+                createButton('button2', 'Question suivante', 'retourmenu')
             }
             break;
         case 'select':
