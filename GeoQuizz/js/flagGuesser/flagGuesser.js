@@ -197,7 +197,7 @@ const switchState = (states) => {
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
-            if (state.answer.contains(document.querySelector('a'))) {
+            if (state.answer.contains(document.getElementById('retourmenu'))) {
             }
             else {
                 createButton('button2', 'Question suivante', 'retourmenu')
