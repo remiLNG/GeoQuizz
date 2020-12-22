@@ -25,11 +25,11 @@ function createButton($class, $text, $id) {
     // Texte du bouton
     var text = document.createTextNode($text);
     // Classe du bouton
-    if(  !($class === undefined) ) {
+    if (!($class === undefined)) {
         button.className += $class;
     }
     // ID du bouton
-    if(  !($id === undefined) ) {
+    if (!($id === undefined)) {
         button.id += $id;
     }
     // appending text to button
@@ -50,16 +50,16 @@ function createButton($class, $text, $id) {
 }
 
 const InputManager = () => {
-    champ.addEventListener("keyup", function(event) {
+    champ.addEventListener("keyup", function (event) {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-          // Cancel the default action, if needed
-          event.preventDefault();
-          // Trigger the button element with a click
-          document.getElementById("myBtn").click();
-          console.log(champ.value)
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("myBtn").click();
+            console.log(champ.value)
         }
-      });
+    });
 }
 
 
@@ -73,7 +73,7 @@ const init = async () => {
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
- 
+
     let btnNormal = document.querySelector("#normal")
     let btnHard = document.querySelector("#hard")
 
@@ -120,13 +120,13 @@ const generateQuestion = () => {
     state.question.querySelector("img").setAttribute("src", questions.flag);
 
     //Ajouter les choix de reponses sur la page
-    if(!hardmode){
+    if (!hardmode) {
         const reponses = questions.possibilities.map((possibility) => {
             return `<li id="response" class="btnanswer police">${possibility}</li>`;
         });
         state.question.querySelector("ul").innerHTML = reponses.join('');
     }
- 
+
 }
 
 window.onload = init;
@@ -159,7 +159,7 @@ const createQuestion = (countries) => {
         }
 
     }
-    
+
 
     possibilities.push(country.translations.fr); //on ajoute la bonne reponse
     p.push(country.flag);
@@ -188,19 +188,30 @@ const switchState = (states) => {
             state.answer.style.display = 'block';
             state.question.style.display = 'none';
             state.end.style.display = 'none';
-            if (state.answer.contains(document.querySelector('a'))) {
+            state.selectMode.style.display = 'none';
+            if (state.answer.contains(document.getElementById("retourmenu"))) {
+                break;
             }
             else {
                 createButton('button2', 'Question suivante', 'retourmenu')
             }
             break;
+        case 'select':
+            state.selectMode.style.display = 'block';
+            state.answer.style.display = 'none';
+            state.question.style.display = 'none';
+            state.end.style.display = 'none';
+            break;
+      
         case 'question':
             state.answer.style.display = 'none';
             state.question.style.display = 'block';
             state.end.style.display = 'none';
+            state.selectMode.style.display = 'none';
             break;
         default:
             state.answer.style.display = 'none';
+            state.selectMode.style.display = 'none';
             state.question.style.display = 'none';
             state.end.style.display = 'block';
             break;
@@ -212,31 +223,31 @@ const switchState = (states) => {
 const checkAnswer = (userAnswer) => {
     var t;
     // si oui alors bonne reponse
-    for(var i = 0;i < questions.p2.length;i++){
-        if(userAnswer === questions.p2[i]){
+    for (var i = 0; i < questions.p2.length; i++) {
+        if (userAnswer === questions.p2[i]) {
             t = i;
-        }   
+        }
     }
-    if (userAnswer === questions.answer || champ.value == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")|| champ.value == questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
+    if (userAnswer === questions.answer || champ.value == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || champ.value == questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
         state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('#mauvrep').innerHTML = '';
-        state.answer.querySelector("#mauvdrap").setAttribute("src",'');
-        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : '+ questions.answer;
+        state.answer.querySelector("#mauvdrap").setAttribute("src", '');
+        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : ' + questions.answer;
         goodAnswers++;
         WIN.play();
-    } else{
+    } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau :`;
-        if(!hardmode){
-            state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
+        if (!hardmode) {
+            state.answer.querySelector("#mauvdrap").setAttribute("src", questions.p[t]);
         }
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
         LOOSE.play();
     }
-    if( champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value!= questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
+    if (champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value != questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
