@@ -94,7 +94,7 @@ const init = async () => {
     btnNormal.addEventListener('click', () => {
         hardmode = false;
         generateQuestion();
-z
+
     })
     btnHard.addEventListener('click', () => {
         generateQuestion();
@@ -241,7 +241,7 @@ const switchState = (states) => {
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
-            if (state.answer.contains(document.getElementById("retourmenu"))) {
+            if (state.answer.contains(document.querySelector('a'))) {
                 break;
             }
             else {
