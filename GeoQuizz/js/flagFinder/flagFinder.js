@@ -18,9 +18,23 @@ let rep2;
 let paysQuestion = [];
 let hardmode = true;
 let listHard = [];
+let timeLeft = 15;
+
+const timeLeftDisplay = document.querySelector('#timer');
 
 
-
+function countDown(){
+    setInterval(function(){
+        if(timeLeft <= 0) {
+            clearInterval(timeLeft =0)
+            switchState('answer')
+            questionNumber++;
+            timeLeft = 15;
+        }
+        timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1    
+    },1000)
+}
 
 function createButton($class, $text, $id) {
     var myDiv = document.getElementById("answer");
@@ -94,10 +108,12 @@ const init = async () => {
     btnNormal.addEventListener('click', () => {
         hardmode = false;
         generateQuestion();
+        countDown();
 
     })
     btnHard.addEventListener('click', () => {
         generateQuestion();
+        countDown();
     })
 
     getAnswer();
@@ -108,10 +124,12 @@ window.onload = init;
 
 //Generer une question
 const generateQuestion = () => {
+ 
 
     switchState('question')
 
     questions = createQuestion(countries, listHard);
+
 
     //Aficher suivi des questions
     state.question.querySelector("#suiviQuestion").innerHTML = " Question " + questionNumber + " / " + questionTotal;

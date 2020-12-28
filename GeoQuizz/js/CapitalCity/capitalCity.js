@@ -12,7 +12,23 @@ let score = 0;
 let userAnswerD = [];
 let rep;
 let rep2;
+let timeLeft = 15;
 
+const timeLeftDisplay = document.querySelector('#timer');
+
+
+function countDown(){
+    setInterval(function(){
+        if(timeLeft <= 0) {
+            clearInterval(timeLeft =0)
+            switchState('answer')
+            questionNumber++;
+            timeLeft = 15;
+        }
+        timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1    
+    },1000)
+}
 
 function createButton($class, $text) {
     var myDiv = document.getElementById("answer");
@@ -58,6 +74,7 @@ const init = async () => {
 
     generateQuestion();
     handleClickChoice();
+    countDown();
 }
 
 window.onload = init;

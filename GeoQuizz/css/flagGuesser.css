@@ -227,7 +227,15 @@ a:active{
 }
 
 
-/* Timer */
 #myBtn{
     display:none;
+}
+
+
+/* Timer */
+#timer {
+    position: absolute;
+    right: 0;
+    margin-right: 200px;
+    top: 50px;
 }

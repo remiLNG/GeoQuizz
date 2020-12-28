@@ -15,7 +15,23 @@ let goodAnswers = 0;
 let userAnswerD;
 let hardmode = true;
 let champ = document.getElementById("champ");
+let timeLeft = 15;
 
+const timeLeftDisplay = document.querySelector('#timer');
+
+
+function countDown(){
+    setInterval(function(){
+        if(timeLeft <= 0) {
+            clearInterval(timeLeft =0)
+            switchState('answer')
+            questionNumber++;
+            timeLeft = 15;
+        }
+        timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1    
+    },1000)
+}
 
 
 function createButton($class, $text, $id) {
@@ -80,12 +96,14 @@ const init = async () => {
     btnNormal.addEventListener('click', () => {
         hardmode = false;
         generateQuestion();
+        countDown()
 
     })
 
     btnHard.addEventListener('click', () => {
         generateQuestion();
         InputManager()
+        countDown()
     })
     handleClickChoice();
 

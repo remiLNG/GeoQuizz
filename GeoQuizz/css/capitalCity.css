@@ -122,3 +122,11 @@ a:active{
     box-shadow: 0 5px rgb(51, 157, 255);
     transform: translateY(4px);
 }
+
+
+#timer {
+    position: absolute;
+    right: 0;
+    margin-right: 200px;
+    top: 50px;
+}
