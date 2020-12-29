@@ -78,6 +78,7 @@ const init = async () => {
     // Acces à toutes les informations des pays
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
+    switchState('select')
 
     listHard = [[countries[184], countries[46], countries[5], countries[146]],
     [countries[105], countries[147], countries[178], countries[202]],

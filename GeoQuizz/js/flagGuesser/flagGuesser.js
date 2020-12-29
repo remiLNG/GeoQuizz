@@ -15,7 +15,7 @@ let goodAnswers = 0;
 let userAnswerD;
 let hardmode = true;
 let champ = document.getElementById("champ");
-let timeLeft = 15;
+let timeLeft = 1500;
 
 const timeLeftDisplay = document.querySelector('#timer');
 
@@ -66,12 +66,10 @@ function createButton($class, $text, $id) {
 }
 
 const InputManager = () => {
+    champ.style.display = 'block';
     champ.addEventListener("keyup", function(event) {
-        // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-          // Cancel the default action, if needed
           event.preventDefault();
-          // Trigger the button element with a click
           document.getElementById("myBtn").click();
           console.log(champ.value)
         }
@@ -89,9 +87,11 @@ const init = async () => {
     const response = await fetch("https://restcountries.eu/rest/v2/all");
     countries = await response.json();
 
+    switchState('select')
 
     let btnNormal = document.querySelector("#normal")
     let btnHard = document.querySelector("#hard")
+    champ.style.display = 'none';
 
     btnNormal.addEventListener('click', () => {
         hardmode = false;

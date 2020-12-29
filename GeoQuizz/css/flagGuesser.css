@@ -239,3 +239,17 @@ a:active{
     margin-right: 200px;
     top: 50px;
 }
+
+#champ{
+    width: 95%;
+    height: 50px;
+    position: relative;
+    top: 800px;
+    margin: auto;
+    border-color: #50B5F1;
+    border-radius: 10px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
