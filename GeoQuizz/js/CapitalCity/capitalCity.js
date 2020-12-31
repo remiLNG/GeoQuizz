@@ -64,8 +64,8 @@ const init = async () => {
     state.end = document.querySelector("#end");
 
     // Acces à toutes les informations des pays
-    const response = await fetch("https://restcountries.eu/rest/v2/all");
-    countries = await response.json();
+    const response = await fetch('/geojson');
+    countries = await response.json()
     
     //Methode pour quand on aura le serveur
     //const geo = require('geo');

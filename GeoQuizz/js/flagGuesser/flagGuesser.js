@@ -84,7 +84,7 @@ const init = async () => {
     state.selectMode = document.querySelector("#select");
 
     // Acces à toutes les informations des pays
-    const response = await fetch("https://restcountries.eu/rest/v2/all");
+    const response = await fetch('/geojson');
     countries = await response.json();
 
     switchState('select')

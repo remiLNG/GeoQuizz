@@ -13,11 +13,6 @@ body {
 
 }
 
-
-#logo{
-background-size: 50%;
-}
-
 .police{
     text-align: center;
     padding-top: 3rem;
@@ -66,4 +61,12 @@ div#listeboutons {
 li {
     margin: 4%;
     list-style: none;
+}
+
+#logo{
+  height: auto;
+  width: 40%;
+  position: absolute;
+  top: -5%;
+  right: 30%;
 }

@@ -23,17 +23,17 @@ let timeLeft = 15;
 const timeLeftDisplay = document.querySelector('#timer');
 
 
-function countDown(){
-    setInterval(function(){
-        if(timeLeft <= 0) {
-            clearInterval(timeLeft =0)
+function countDown() {
+    setInterval(function () {
+        if (timeLeft <= 0) {
+            clearInterval(timeLeft = 0)
             switchState('answer')
             questionNumber++;
             timeLeft = 15;
         }
         timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1    
-    },1000)
+        timeLeft -= 1
+    }, 1000)
 }
 
 function createButton($class, $text, $id) {
@@ -43,11 +43,11 @@ function createButton($class, $text, $id) {
     // Texte du bouton
     var text = document.createTextNode($text);
     // Classe du bouton
-    if(  !($class === undefined) ) {
+    if (!($class === undefined)) {
         button.className += $class;
     }
     // ID du bouton
-    if(  !($id === undefined) ) {
+    if (!($id === undefined)) {
         button.id += $id;
     }
     // appending text to button
@@ -69,16 +69,18 @@ function createButton($class, $text, $id) {
 
 
 
+
 const init = async () => {
     state.selectMode = document.querySelector("#select");
     state.question = document.querySelector("#question");
     state.answer = document.querySelector("#answer");
     state.end = document.querySelector("#end");
 
-    // Acces à toutes les informations des pays
-    const response = await fetch("https://restcountries.eu/rest/v2/all");
-    countries = await response.json();
-    switchState('select')
+    const response = await fetch('/geojson');
+    countries = await response.json()
+
+    switchState('select');
+
 
     listHard = [[countries[184], countries[46], countries[5], countries[146]],
     [countries[105], countries[147], countries[178], countries[202]],
@@ -102,7 +104,6 @@ const init = async () => {
     [countries[75], countries[13], countries[24], countries[159]],
     [countries[10], countries[68], countries[160], countries[100]]];
 
-
     let btnNormal = document.querySelector("#normal")
     let btnHard = document.querySelector("#hard")
 
@@ -125,7 +126,7 @@ window.onload = init;
 
 //Generer une question
 const generateQuestion = () => {
- 
+
 
     switchState('question')
 
@@ -272,7 +273,7 @@ const switchState = (states) => {
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             break;
-      
+
         case 'question':
             state.answer.style.display = 'none';
             state.question.style.display = 'block';

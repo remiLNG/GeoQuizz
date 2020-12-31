@@ -19,6 +19,10 @@ app.use('/fonts', express.static(__dirname + '/fonts'));
 app.use('/sounds', express.static(__dirname + '/sounds'));
 
 
+app.get('/geojson', (req,res) => {
+    res.sendFile(path.join(__dirname, "geo.json"))
+})
+
 app.get('/menu', (req, res) => {
     res.sendFile(path.join(__dirname, "menu.html"))
 })
@@ -36,6 +40,8 @@ app.use('/Multiplayer', multiplayer);
 app.get('/Regle', (req, res) => {
     res.sendFile(path.join(__dirname, "Regle.html"))
 })
+
+app.use("/static", express.static('./static/'));
 
 io.on('connect', (client) => {
 
