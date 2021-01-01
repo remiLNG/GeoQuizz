@@ -1,0 +1,16 @@
+.map {
+    width: 50%;
+    margin-left: 20%;
+    float: center;
+}
+
+.map path{
+    fill: darkslateblue;
+    stroke: white;
+    stroke-width: 1px;
+    transition: fill 0.3s;
+}
+
+.map path:hover{
+    fill: blueviolet;
+}
