@@ -130,3 +130,22 @@ a:active{
     margin-right: 200px;
     top: 50px;
 }
+
+#myBtn{
+    display: none;
+}
+
+
+#champ{
+    width: 45%;
+    height: 50px;
+    position: relative;
+    top: 358px;
+    margin: auto;
+    border-color: #50B5F1;
+    border-radius: 10px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}

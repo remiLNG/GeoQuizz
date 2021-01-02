@@ -15,7 +15,9 @@ let goodAnswers = 0;
 let userAnswerD;
 let hardmode = true;
 let champ = document.getElementById("champ");
+let next = document.getElementById("Pass");
 let timeLeft = 1500;
+
 
 const timeLeftDisplay = document.querySelector('#timer');
 
@@ -71,7 +73,7 @@ const InputManager = () => {
         if (event.keyCode === 13) {
           event.preventDefault();
           document.getElementById("myBtn").click();
-          console.log(champ.value)
+
         }
       });
 }
@@ -87,11 +89,21 @@ const init = async () => {
     const response = await fetch('/geojson');
     countries = await response.json();
 
+
+    // Passer la question
+    next.addEventListener('click', function(){
+        switchState('answer');
+        questionNumber++;
+        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
+        LOOSE.play();
+    })
+
     switchState('select')
 
     let btnNormal = document.querySelector("#normal")
     let btnHard = document.querySelector("#hard")
     champ.style.display = 'none';
+    next.style.display = 'none'
 
     btnNormal.addEventListener('click', () => {
         hardmode = false;
@@ -104,11 +116,11 @@ const init = async () => {
         generateQuestion();
         InputManager()
         countDown()
+        next.style.display = 'block'
     })
     handleClickChoice();
 
 }
-
 
 
 
@@ -226,6 +238,7 @@ const switchState = (states) => {
             state.question.style.display = 'block';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
+            champ.value = "";
             break;
         default:
             state.answer.style.display = 'none';
@@ -265,7 +278,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
         LOOSE.play();
     }
-    if( champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value!= questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
+    if(hardmode && champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value!= questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;

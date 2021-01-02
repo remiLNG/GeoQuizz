@@ -18,19 +18,26 @@
 </head>
 
 <body>
+    <div id="select">
+        <a id="normal" class ="button2">Normal</a>
+        <a id="hard" class ="button2">Difficile</a>
+    </div>
     <div id="question">
         <h1 id="timer"></h1>
+        <input type="text" id="champ" placeholder="Nom de la capitale">
+        <button id="myBtn" onclick="checkAnswer()">Button</button>
         <p class="police"></p>
         <p id="questionTitle" class="police"></p>
         <p id="pays" class="police"></p>
         <div id="contrep" >
             <ul class="jumbotron"></ul>
+            <button id="Pass"> Passer </button>
         </div>
     </div>
     <div id="answer" class="police" style="display: none;">
         <h2></h2>
-        <h3></h3>
-        <p></p>
+        <h3 id="mauvrep"></h3>
+        <p id="bonrep"></p>
     </div>
     <div id="end" class="police" style="display: none;">
     </div>
