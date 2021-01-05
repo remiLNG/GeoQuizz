@@ -24,15 +24,17 @@
     </div>
     <div id="question" class="container">
         <h1 id="timer"></h1>
-        <input type="text" id="champ" placeholder="Nom du pays">
         <button id="myBtn" onclick="checkAnswer()">Button</button>
         <p id="nbquestion"  class="police"></p>
         <p id="questionTitle"  class="police"></p>
         <div id="jumboflag" class="jumbotron">
             <img id="flag" >
         </div>
+        <div id = form class="jumbotron">
+            <input type="text" id="champ" placeholder="Nom du pays">
+        </div>
         <ul class="jumbotron"></ul>
-        <button id="Pass"> Passer </button>
+        <a id="Pass" class="button2"> Passer </a>
     </div>
 
     <div id="answer" class="police" style="display: none;">
@@ -41,8 +43,11 @@
         <img id="mauvdrap"></img>
         <p id="bonrep"></p>
     </div>
+
+
     <div id="end" class="police" style="display: none;">
     </div>
+    
     <script src="js/flagGuesser/flagGuesser.js"></script>
     <script src="js/sound.js"></script>
 </body>

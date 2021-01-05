@@ -13,7 +13,7 @@ let score = 0;
 let userAnswerD = [];
 let rep;
 let rep2;
-let timeLeft = 15;
+let timeLeft = 1000;
 let hardmode = true;
 let champ = document.getElementById("champ");
 let next = document.getElementById("Pass");
@@ -222,10 +222,10 @@ const switchState = (states) => {
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
-            if (state.answer.contains(document.getElementById('retourmenu'))) {
+            if (state.answer.contains(document.getElementById('questionSuivante'))) {
             }
             else {
-                createButton('button2', 'Question suivante', 'retourmenu')
+                createButton('button2', 'Question suivante', 'questionSuivante')
             }
             break;
         case 'question':

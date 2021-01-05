@@ -19,6 +19,20 @@ h2 {
     font-size: 150%  !important;
 }
 
+/* Partie pour la selection du mode */
+
+div#select {
+    margin-top:25%;
+    text-align : center;
+}
+
+/* Partie difficile, bouton passer */
+
+a#Pass {
+    text-align:center;
+    font-size: 200%
+}
+
 /* Partie drapeau et conteneur du drapeau  */
 
 div.jumbotron {
@@ -126,56 +140,11 @@ a:active{
     margin-top: 5%;
 }
 
-/* Texte mauvaise réponse  */
-
-#bonrep {
-    margin-top: 2%;
-}
-
-/* Bouton retour menu */
-
-#retourmenu{
-    display: inline-block;
-    margin-top: 2%;
-}
-
 /* Texte bonne réponse  */
 
 #mauvrep {
     margin-top: 2%;
     margin-bottom: 2%;
-}
-
-/* Texte bonne réponse  */
-
-#mauvrep {
-    margin-top: 2%;
-}
-
-/* Texte mauvaise réponse  */
-
-#bonrep {
-    margin-top: 2%;
-}
-
-/* Bouton retour menu */
-
-#retourmenu{
-    display: inline-block;
-    margin-top: 2%;
-}
-
-/* Texte bonne réponse  */
-
-#mauvrep {
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-/* Texte bonne réponse  */
-
-#mauvrep {
-    margin-top: 2%;
 }
 
 /* Texte mauvaise réponse  */
@@ -240,13 +209,9 @@ a:active{
     top: 50px;
 }
 
-#champ{
-    width: 95%;
-    height: 50px;
-    position: relative;
-    top: 800px;
-    margin: auto;
-    border-color: #50B5F1;
+#champ {
+    margin-left: 30%;
+    padding: 10px;
     border-radius: 10px;
 }
 

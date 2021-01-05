@@ -15,6 +15,12 @@ body {
 }
 
 
+div#select {
+    margin-top:25%;
+    text-align : center;
+}
+
+
 /* Partie drapeau et conteneur du drapeau  */
 
 #nbquestion{
@@ -44,7 +50,7 @@ ul{
     display: flex;
 }
 
-ul.jumbotron {
+div.jumbotron {
     background-color:rgba(255, 255, 255, 0.2);
     border-radius: 25px 25px 25px 25px;
     margin-left: 25%;
@@ -69,6 +75,7 @@ a{
 a:hover {
     background-color: #e94b68;
     font-size: 175%;
+    cursor: pointer;
 }
 
 a:active{
@@ -135,15 +142,21 @@ a:active{
     display: none;
 }
 
+div#contrep {
+    margin-left: 20%;
+    margin-right: 20%;
+}
 
-#champ{
-    width: 45%;
-    height: 50px;
-    position: relative;
-    top: 358px;
-    margin: auto;
-    border-color: #50B5F1;
+
+#champ {
+    margin-left: 30%;
+    padding: 10px;
     border-radius: 10px;
+}
+
+a#Pass {
+    text-align:center;
+    font-size: 200%
 }
 
 textarea:focus, input:focus{

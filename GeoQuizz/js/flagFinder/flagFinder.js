@@ -261,10 +261,10 @@ const switchState = (states) => {
             state.question.style.display = 'none';
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
-            if (state.answer.contains(document.getElementById('retourmenu'))) {
+            if (state.answer.contains(document.getElementById('questionSuivante'))) {
             }
             else {
-                createButton('button2', 'Question suivante', 'retourmenu')
+                createButton('button2', 'Question suivante', 'questionSuivante')
             }
             break;
         case 'select':
