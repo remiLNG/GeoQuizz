@@ -25,11 +25,14 @@ const timeLeftDisplay = document.querySelector('#timer');
 
 function countDown() {
     setInterval(function () {
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 && questionNumber <= questionTotal) {
             clearInterval(timeLeft = 0)
             switchState('answer')
+            state.answer.querySelector('#rep').innerHTML = 'La reponse etait';
+            state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
             questionNumber++;
             timeLeft = 15;
+            LOOSE.play();
         }
         timeLeftDisplay.innerHTML = timeLeft
         timeLeft -= 1

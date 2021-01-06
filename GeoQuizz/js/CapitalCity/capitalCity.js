@@ -13,7 +13,7 @@ let score = 0;
 let userAnswerD = [];
 let rep;
 let rep2;
-let timeLeft = 1000;
+let timeLeft = 5;
 let hardmode = true;
 let champ = document.getElementById("champ");
 let next = document.getElementById("Pass");
@@ -23,11 +23,13 @@ const timeLeftDisplay = document.querySelector('#timer');
 
 function countDown() {
     setInterval(function () {
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 && questionNumber <= questionTotal) {
             clearInterval(timeLeft = 0)
             switchState('answer')
             questionNumber++;
             timeLeft = 15;
+            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.cap} </p>`;
+            LOOSE.play();
         }
         timeLeftDisplay.innerHTML = timeLeft
         timeLeft -= 1
@@ -108,7 +110,7 @@ const init = async () => {
         hardmode = false;
         generateQuestion();
         countDown()
-
+        handleClickChoice();
     })
 
     btnHard.addEventListener('click', () => {
@@ -117,7 +119,7 @@ const init = async () => {
         countDown()
         next.style.display = 'block'
     })
-    handleClickChoice();
+   
 }
 
 window.onload = init;
@@ -126,12 +128,14 @@ window.onload = init;
 
 // Cliquer sur une des reponses
 const handleClickChoice = () => {
-    state.question.querySelector('ul').addEventListener('click', ({ target }) => {
-        if (target.matches('li')) {
-            const userAnswer = target.innerHTML;
-            checkAnswer(userAnswer);
-        }
-    });
+    if (!hardmode) {
+        state.question.querySelector('ul').addEventListener('click', ({ target }) => {
+            if (target.matches('li')) {
+                const userAnswer = target.innerHTML;
+                checkAnswer(userAnswer);
+            }
+        });
+    }
 }
 
 
@@ -149,7 +153,7 @@ const generateQuestion = () => {
     state.question.querySelector("#pays").innerHTML = questions.pays;
 
     //Ajouter les choix de reponses sur la page
-    if(!hardmode){
+    if (!hardmode) {
         const reponses = questions.possibilities.map((possibility) => {
             return `<li id="response" class="btnanswer police">${possibility}</li>`;
         });
@@ -234,6 +238,14 @@ const switchState = (states) => {
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
             champ.value = "";
+            if(!hardmode){
+                let form = document.getElementById("form")
+                form.style.display = 'none'
+            }else{
+                champ.style.display = 'block'
+                let liste = document.getElementById("liste")
+                liste.style.display = 'none'
+            }
             break;
         default:
             state.answer.style.display = 'none';
@@ -269,7 +281,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu " + rep + " qui est la capitale de " + rep2 + " <br> Alors que la capitale de " + questions.pays + " est  " + questions.cap + ' !';
         LOOSE.play();
     }
-    if(hardmode && champ.value != questions.cap.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value != questions.cap.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
+    if (hardmode && champ.value != questions.cap.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value != questions.cap.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;

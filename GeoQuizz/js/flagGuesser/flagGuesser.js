@@ -16,17 +16,21 @@ let userAnswerD;
 let hardmode = true;
 let champ = document.getElementById("champ");
 let next = document.getElementById("Pass");
-let timeLeft = 1500;
+let timeLeft = 5;
 
+
+let form = document.getElementById("form");
 
 const timeLeftDisplay = document.querySelector('#timer');
 
 
 function countDown(){
     setInterval(function(){
-        if(timeLeft <= 0) {
+        if(timeLeft <= 0 && questionNumber <= questionTotal) {
             clearInterval(timeLeft =0)
             switchState('answer')
+            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
+            LOOSE.play();
             questionNumber++;
             timeLeft = 15;
         }
@@ -68,12 +72,10 @@ function createButton($class, $text, $id) {
 }
 
 const InputManager = () => {
-    champ.style.display = 'block';
     champ.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
           event.preventDefault();
           document.getElementById("myBtn").click();
-
         }
       });
 }
@@ -84,6 +86,7 @@ const init = async () => {
     state.answer = document.querySelector("#answer");
     state.end = document.querySelector("#end");
     state.selectMode = document.querySelector("#select");
+
 
     // Acces à toutes les informations des pays
     const response = await fetch('/geojson');
@@ -157,6 +160,9 @@ const generateQuestion = () => {
             return `<li id="response" class="btnanswer police">${possibility}</li>`;
         });
         state.question.querySelector("ul").innerHTML = reponses.join('');
+    }else{
+       let ul = document.getElementById("liste")
+       ul.style.display = 'none';
     }
  
 }
@@ -239,6 +245,14 @@ const switchState = (states) => {
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
             champ.value = "";
+            if(!hardmode){
+                let form = document.getElementById("form")
+                form.style.display = 'none'
+            }else{
+                champ.style.display = 'block'
+                let liste = document.getElementById("liste")
+                liste.style.display = 'none'
+            }
             break;
         default:
             state.answer.style.display = 'none';

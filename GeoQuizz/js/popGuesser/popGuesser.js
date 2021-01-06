@@ -17,11 +17,13 @@ const timeLeftDisplay = document.querySelector('#timer');
 
 function countDown(){
     setInterval(function(){
-        if(timeLeft <= 0) {
+        if(timeLeft <= 0 && questionNumber <= questionTotal) {
             clearInterval(timeLeft =0)
             switchState('answer')
             questionNumber++;
             timeLeft = 15;
+            state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' est plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.' ;
+            LOOSE.play();
         }
         timeLeftDisplay.innerHTML = timeLeft
         timeLeft -= 1    
