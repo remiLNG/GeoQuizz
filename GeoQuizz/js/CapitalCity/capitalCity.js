@@ -13,26 +13,32 @@ let score = 0;
 let userAnswerD = [];
 let rep;
 let rep2;
-let timeLeft = 5;
+let timeBasic = 8;
+let timeLeft = timeBasic;
 let hardmode = true;
 let champ = document.getElementById("champ");
 let next = document.getElementById("Pass");
+let timerstop = true;
 
 const timeLeftDisplay = document.querySelector('#timer');
 
 
 function countDown() {
     setInterval(function () {
-        if (timeLeft <= 0 && questionNumber <= questionTotal) {
-            clearInterval(timeLeft = 0)
-            switchState('answer')
-            questionNumber++;
-            timeLeft = 15;
-            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.cap} </p>`;
-            LOOSE.play();
+        if (timerstop) {
+            if (timeLeft <= 0 && questionNumber <= questionTotal) {
+                clearInterval(timeLeft = 0)
+                switchState('answer')
+                questionNumber++;
+                timeLeft = timeBasic;
+                state.answer.querySelector('h2').style.color = 'red'
+                state.answer.querySelector('h2').innerHTML = `Trop tard !`;
+                state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.cap} </p>`;
+                LOOSE.play();
+            }
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -= 1
         }
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
     }, 1000)
 }
 
@@ -119,7 +125,7 @@ const init = async () => {
         countDown()
         next.style.display = 'block'
     })
-   
+
 }
 
 window.onload = init;
@@ -142,6 +148,8 @@ const handleClickChoice = () => {
 const generateQuestion = () => {
 
     switchState('question')
+    timerstop = true;
+    timeLeft = timeBasic;
 
     questions = createQuestion(countries);
 
@@ -231,6 +239,7 @@ const switchState = (states) => {
             else {
                 createButton('button2', 'Question suivante', 'questionSuivante')
             }
+            timerstop = false;
             break;
         case 'question':
             state.answer.style.display = 'none';
@@ -238,10 +247,10 @@ const switchState = (states) => {
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
             champ.value = "";
-            if(!hardmode){
+            if (!hardmode) {
                 let form = document.getElementById("form")
                 form.style.display = 'none'
-            }else{
+            } else {
                 champ.style.display = 'block'
                 let liste = document.getElementById("liste")
                 liste.style.display = 'none'

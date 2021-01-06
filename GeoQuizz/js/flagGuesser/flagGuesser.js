@@ -16,7 +16,9 @@ let userAnswerD;
 let hardmode = true;
 let champ = document.getElementById("champ");
 let next = document.getElementById("Pass");
-let timeLeft = 5;
+let timeBasic = 15
+let timeLeft = timeBasic;
+let timerstop = true;
 
 
 let form = document.getElementById("form");
@@ -24,19 +26,23 @@ let form = document.getElementById("form");
 const timeLeftDisplay = document.querySelector('#timer');
 
 
-function countDown(){
-    setInterval(function(){
-        if(timeLeft <= 0 && questionNumber <= questionTotal) {
-            clearInterval(timeLeft =0)
-            switchState('answer')
-            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
-            LOOSE.play();
-            questionNumber++;
-            timeLeft = 15;
+function countDown() {
+    setInterval(function () {
+        if (timerstop) {
+            if (timeLeft <= 0 && questionNumber <= questionTotal) {
+                clearInterval(timeLeft = 0)
+                switchState('answer')
+                state.answer.querySelector('h2').style.color = 'red'
+                state.answer.querySelector('h2').innerHTML = `Trop tard !`;
+                state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
+                LOOSE.play();
+                questionNumber++;
+                timeLeft = 15;
+            }
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -= 1
         }
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1    
-    },1000)
+    }, 1000)
 }
 
 
@@ -47,11 +53,11 @@ function createButton($class, $text, $id) {
     // Texte du bouton
     var text = document.createTextNode($text);
     // Classe du bouton
-    if(  !($class === undefined) ) {
+    if (!($class === undefined)) {
         button.className += $class;
     }
     // ID du bouton
-    if(  !($id === undefined) ) {
+    if (!($id === undefined)) {
         button.id += $id;
     }
     // appending text to button
@@ -72,12 +78,12 @@ function createButton($class, $text, $id) {
 }
 
 const InputManager = () => {
-    champ.addEventListener("keyup", function(event) {
+    champ.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
-          event.preventDefault();
-          document.getElementById("myBtn").click();
+            event.preventDefault();
+            document.getElementById("myBtn").click();
         }
-      });
+    });
 }
 
 
@@ -94,7 +100,7 @@ const init = async () => {
 
 
     // Passer la question
-    next.addEventListener('click', function(){
+    next.addEventListener('click', function () {
         switchState('answer');
         questionNumber++;
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
@@ -140,6 +146,9 @@ const handleClickChoice = () => {
 
 //Generer une question
 const generateQuestion = () => {
+    
+    timerstop = true;
+    timeLeft = timeBasic;
 
     switchState('question')
 
@@ -155,16 +164,16 @@ const generateQuestion = () => {
     state.question.querySelector("img").setAttribute("src", questions.flag);
 
     //Ajouter les choix de reponses sur la page
-    if(!hardmode){
+    if (!hardmode) {
         const reponses = questions.possibilities.map((possibility) => {
             return `<li id="response" class="btnanswer police">${possibility}</li>`;
         });
         state.question.querySelector("ul").innerHTML = reponses.join('');
-    }else{
-       let ul = document.getElementById("liste")
-       ul.style.display = 'none';
+    } else {
+        let ul = document.getElementById("liste")
+        ul.style.display = 'none';
     }
- 
+
 }
 
 window.onload = init;
@@ -197,7 +206,7 @@ const createQuestion = (countries) => {
         }
 
     }
-    
+
 
     possibilities.push(country.translations.fr); //on ajoute la bonne reponse
     p.push(country.flag);
@@ -238,6 +247,7 @@ const switchState = (states) => {
             else {
                 createButton('button2', 'Question suivante', 'questionSuivante')
             }
+            timerstop = false;
             break;
         case 'question':
             state.answer.style.display = 'none';
@@ -245,10 +255,10 @@ const switchState = (states) => {
             state.end.style.display = 'none';
             state.selectMode.style.display = 'none';
             champ.value = "";
-            if(!hardmode){
+            if (!hardmode) {
                 let form = document.getElementById("form")
                 form.style.display = 'none'
-            }else{
+            } else {
                 champ.style.display = 'block'
                 let liste = document.getElementById("liste")
                 liste.style.display = 'none'
@@ -268,31 +278,31 @@ const switchState = (states) => {
 const checkAnswer = (userAnswer) => {
     var t;
     // si oui alors bonne reponse
-    for(var i = 0;i < questions.p2.length;i++){
-        if(userAnswer === questions.p2[i]){
+    for (var i = 0; i < questions.p2.length; i++) {
+        if (userAnswer === questions.p2[i]) {
             t = i;
-        }   
+        }
     }
-    if (userAnswer === questions.answer || champ.value == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")|| champ.value == questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
+    if (userAnswer === questions.answer || champ.value == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || champ.value == questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
         state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
         state.answer.querySelector('#mauvrep').innerHTML = '';
-        state.answer.querySelector("#mauvdrap").setAttribute("src",'');
-        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : '+ questions.answer;
+        state.answer.querySelector("#mauvdrap").setAttribute("src", '');
+        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : ' + questions.answer;
         goodAnswers++;
         WIN.play();
-    } else{
+    } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau :`;
-        if(!hardmode){
-            state.answer.querySelector("#mauvdrap").setAttribute("src",questions.p[t]);
+        if (!hardmode) {
+            state.answer.querySelector("#mauvdrap").setAttribute("src", questions.p[t]);
         }
         state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
         LOOSE.play();
     }
-    if(hardmode && champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value!= questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
+    if (hardmode && champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value != questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
         state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;

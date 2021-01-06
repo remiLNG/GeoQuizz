@@ -10,24 +10,30 @@ let questions = {};
 let questionNumber = 1;
 let questionTotal = 3;
 let score = 0;
-let timeLeft = 15;
+let timeBasic = 15
+let timeLeft = timeBasic;
+let timerstop = true;
 
 const timeLeftDisplay = document.querySelector('#timer');
 
 
-function countDown(){
-    setInterval(function(){
-        if(timeLeft <= 0 && questionNumber <= questionTotal) {
-            clearInterval(timeLeft =0)
-            switchState('answer')
-            questionNumber++;
-            timeLeft = 15;
-            state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' est plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.' ;
-            LOOSE.play();
+function countDown() {
+    setInterval(function () {
+        if (timerstop) {
+            if (timeLeft <= 0 && questionNumber <= questionTotal) {
+                clearInterval(timeLeft = 0)
+                switchState('answer')
+                questionNumber++;
+                timeLeft = timeBasic;
+                state.answer.querySelector('h2').style.color = 'red';
+                state.answer.querySelector('h2').innerHTML = 'Trop tard !';
+                state.answer.querySelector('p').innerHTML = 'Avec ' + questions.answer + ' habitants le/la ' + questions.pays + ' est plus peuplé que le/la ' + questions.fauxpays + ' avec ' + questions.fauxpop + ' habitants.';
+                LOOSE.play();
+            }
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -= 1
         }
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1    
-    },1000)
+    }, 1000)
 }
 
 
@@ -75,7 +81,7 @@ const init = async () => {
     const response = await fetch('/geojson');
     countries = await response.json()
 
-    
+
     generateQuestion();
     getAnswer();
     countDown();
@@ -87,7 +93,8 @@ window.onload = init;
 
 //Generer une question
 const generateQuestion = () => {
-
+    timerstop = true;
+    timeLeft = timeBasic;
     questions = createQuestion(countries);
 
     //Aficher suivi des questions
@@ -95,7 +102,7 @@ const generateQuestion = () => {
 
     //Aficher la question
     state.question.querySelector("#questions").innerHTML = " Lequel de ces pays a le plus de population ? "
-    
+
 
 
     // Afficher les reponses
@@ -103,7 +110,7 @@ const generateQuestion = () => {
     state.question.querySelector("#pays2").innerHTML = questions.possibilities[1].translations.fr;
     state.question.querySelector("#drapeau1").setAttribute("src", questions.possibilities[0].flag);
     state.question.querySelector("#drapeau2").setAttribute("src", questions.possibilities[1].flag);
-    
+
     console.log(questions.possibilities[0])
     console.log(questions.possibilities[1])
 }
@@ -114,7 +121,7 @@ const createQuestion = (countries) => {
 
     let random = 0;
     let random2 = 0;
-    
+
     do {
         random = parseInt(Math.random() * countries.length);
         random2 = parseInt(Math.random() * countries.length);
@@ -130,16 +137,16 @@ const createQuestion = (countries) => {
     possibilities.push(country2);
 
     var repPop
-    var repNom 
+    var repNom
     var fauxPop
     var fauxNom
 
-    if(country.population > country2.population){
+    if (country.population > country2.population) {
         repPop = country.population;
         repNom = country.translations.fr;
         fauxPop = country2.population;
         fauxNom = country2.translations.fr;
-    }else{
+    } else {
         repPop = country2.population;
         repNom = country2.translations.fr;
         fauxPop = country.population;
@@ -148,12 +155,12 @@ const createQuestion = (countries) => {
 
     const questions = {
         pays: repNom,  //Pays en question
-        fauxpays : fauxNom,
+        fauxpays: fauxNom,
         possibilities, //Les choix de reponses
-        answer:  repPop,//bonne reponse
+        answer: repPop,//bonne reponse
         fauxpop: fauxPop
     }
-    
+
     console.log(questions.possibilities[0])
     console.log(questions.possibilities[1])
 
@@ -174,6 +181,7 @@ const switchState = (states) => {
             else {
                 createButton('button2', 'Question suivante', 'questionSuivante')
             }
+            timerstop = false;
             break;
         case 'question':
             state.answer.style.display = 'none';
@@ -214,13 +222,13 @@ const checkAnswer = (userAnswer) => {
     // si oui alors bonne reponse
     if (userAnswer === questions.answer) {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
-        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' est plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.';
+        state.answer.querySelector('p').innerHTML = 'Avec ' + questions.answer + ' habitants le/la ' + questions.pays + ' est plus peuplé que le/la ' + questions.fauxpays + ' avec ' + questions.fauxpop + ' habitants.';
         score++;
         WIN.play();
     } else {
         // si non alors mauvais reponse
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
-        state.answer.querySelector('p').innerHTML = 'Avec ' +questions.answer+ ' habitants le/la ' + questions.pays+ ' est plus peuplé que le/la ' + questions.fauxpays + ' avec '+ questions.fauxpop + ' habitants.' ;
+        state.answer.querySelector('p').innerHTML = 'Avec ' + questions.answer + ' habitants le/la ' + questions.pays + ' est plus peuplé que le/la ' + questions.fauxpays + ' avec ' + questions.fauxpop + ' habitants.';
         LOOSE.play();
     }
     //afficher la reponse dans state answer

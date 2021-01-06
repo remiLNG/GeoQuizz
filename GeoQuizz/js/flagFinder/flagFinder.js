@@ -18,24 +18,30 @@ let rep2;
 let paysQuestion = [];
 let hardmode = true;
 let listHard = [];
-let timeLeft = 15;
+let timeBasic = 15
+let timeLeft = timeBasic;
+let timerstop = true;
 
 const timeLeftDisplay = document.querySelector('#timer');
 
 
 function countDown() {
     setInterval(function () {
-        if (timeLeft <= 0 && questionNumber <= questionTotal) {
-            clearInterval(timeLeft = 0)
-            switchState('answer')
-            state.answer.querySelector('#rep').innerHTML = 'La reponse etait';
-            state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
-            questionNumber++;
-            timeLeft = 15;
-            LOOSE.play();
+        if (timerstop) {
+            if (timeLeft <= 0 && questionNumber <= questionTotal) {
+                clearInterval(timeLeft = 0)
+                switchState('answer')
+                state.answer.querySelector('h2').style.color = 'red'
+                state.answer.querySelector('h2').innerHTML = 'Trop Tard !';
+                state.answer.querySelector('#rep').innerHTML = 'La reponse etait';
+                state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
+                questionNumber++;
+                timeLeft = 15;
+                LOOSE.play();
+            }
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -= 1
         }
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
     }, 1000)
 }
 
@@ -130,7 +136,8 @@ window.onload = init;
 //Generer une question
 const generateQuestion = () => {
 
-
+    timerstop = true;
+    timeLeft = timeBasic;
     switchState('question')
 
     questions = createQuestion(countries, listHard);
@@ -269,6 +276,7 @@ const switchState = (states) => {
             else {
                 createButton('button2', 'Question suivante', 'questionSuivante')
             }
+            timerstop = false;
             break;
         case 'select':
             state.selectMode.style.display = 'block';
