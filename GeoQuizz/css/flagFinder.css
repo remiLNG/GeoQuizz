@@ -144,3 +144,9 @@ img#goodflag {
     top: 50px;
     font-family: milky; 
 }
+
+#goodflag{
+    max-width: 100%;
+    height: 10rem;
+    border-radius: 25px 25px 25px 25px;
+}

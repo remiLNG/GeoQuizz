@@ -13,7 +13,7 @@ let score = 0;
 let userAnswerD = [];
 let rep;
 let rep2;
-let timeBasic = 8;
+let timeBasic = 15;
 let timeLeft = timeBasic;
 let hardmode = true;
 let champ = document.getElementById("champ");
@@ -276,26 +276,36 @@ const checkAnswer = (userAnswer) => {
         }
     }
     // si oui alors bonne reponse
-    if (userAnswer === questions.cap || champ.value == questions.cap.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || champ.value == questions.cap.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
-        state.answer.querySelector('h2').style.color = 'green'
-        state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
-        state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  " + questions.cap + " !";
-        state.answer.querySelector('p').innerHTML = '';
-        score++;
-        WIN.play();
+    if (hardmode == false) {
+        if (userAnswer === questions.cap) {
+            state.answer.querySelector('h2').style.color = 'green'
+            state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
+            state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  " + questions.cap + " !";
+            state.answer.querySelector('p').innerHTML = '';
+            score++;
+            WIN.play();
+        } else {
+            // si non alors mauvais reponse
+            state.answer.querySelector('h2').style.color = 'red'
+            state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
+            state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu " + rep + " qui est la capitale de " + rep2 + " <br> Alors que la capitale de " + questions.pays + " est  " + questions.cap + ' !';
+            LOOSE.play();
+        }
     } else {
-        // si non alors mauvais reponse
-        state.answer.querySelector('h2').style.color = 'red'
-        state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
-        state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu " + rep + " qui est la capitale de " + rep2 + " <br> Alors que la capitale de " + questions.pays + " est  " + questions.cap + ' !';
-        LOOSE.play();
-    }
-    if (hardmode && champ.value != questions.cap.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value != questions.cap.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
-        state.answer.querySelector('h2').style.color = 'red'
-        state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
-        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
-        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.cap} </p>`;
-        LOOSE.play();
+        if (champ.value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") == questions.cap.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
+            state.answer.querySelector('h2').style.color = 'green'
+            state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
+            state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  " + questions.cap + " !";
+            state.answer.querySelector('p').innerHTML = '';
+            score++;
+            WIN.play();
+        } else {
+            state.answer.querySelector('h2').style.color = 'red'
+            state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
+            state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
+            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.cap} </p>`;
+            LOOSE.play();
+        }
     }
     questionNumber++;
     //afficher la reponse dans state answer

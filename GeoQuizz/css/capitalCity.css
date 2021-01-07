@@ -211,3 +211,14 @@ p#bonrep {
     font-weight: 700; 
     line-height: 26.4px; 
 }
+
+input[type="text"]
+{
+    padding-top: 3rem;
+    font-family: milky; 
+    font-size: 120%; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}

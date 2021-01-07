@@ -146,7 +146,7 @@ const handleClickChoice = () => {
 
 //Generer une question
 const generateQuestion = () => {
-    
+
     timerstop = true;
     timeLeft = timeBasic;
 
@@ -283,31 +283,42 @@ const checkAnswer = (userAnswer) => {
             t = i;
         }
     }
-    if (userAnswer === questions.answer || champ.value == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || champ.value == questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
-        state.answer.querySelector('h2').style.color = 'green'
-        state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
-        state.answer.querySelector('#mauvrep').innerHTML = '';
-        state.answer.querySelector("#mauvdrap").setAttribute("src", '');
-        state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau était bien celui de le/la : ' + questions.answer;
-        goodAnswers++;
-        WIN.play();
-    } else {
-        // si non alors mauvais reponse
-        state.answer.querySelector('h2').style.color = 'red'
-        state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
-        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau :`;
-        if (!hardmode) {
+    if (hardmode == false) {
+        if (userAnswer === questions.answer) {
+            state.answer.querySelector('h2').style.color = 'green'
+            state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
+            state.answer.querySelector('#mauvrep').innerHTML = '';
+            state.answer.querySelector("#mauvdrap").setAttribute("src", '');
+            state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau est bien celui de ce pays : ' + questions.answer;
+            goodAnswers++;
+            WIN.play();
+        } else {
+            // si non alors mauvais reponse
+            state.answer.querySelector('h2').style.color = 'red'
+            state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
+            state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${userAnswer} qui a pour drapeau :`;
             state.answer.querySelector("#mauvdrap").setAttribute("src", questions.p[t]);
+            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
+            LOOSE.play();
         }
-        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
-        LOOSE.play();
-    }
-    if (hardmode && champ.value != questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") && champ.value != questions.answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
-        state.answer.querySelector('h2').style.color = 'red'
-        state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
-        state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
-        state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
-        LOOSE.play();
+    } else {
+        if (champ.value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") == questions.answer.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
+            state.answer.querySelector('h2').style.color = 'green'
+            state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
+            state.answer.querySelector('#mauvrep').innerHTML = '';
+            state.answer.querySelector("#mauvdrap").setAttribute("src", '');
+            state.answer.querySelector('#bonrep').innerHTML = 'Le drapeau est bien celui de ce pays : ' + questions.answer;
+            goodAnswers++;
+            WIN.play();
+        }
+
+        else {
+            state.answer.querySelector('h2').style.color = 'red'
+            state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
+            state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
+            state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.answer} </p>`;
+            LOOSE.play();
+        }
     }
     questionNumber++;
     //afficher la reponse dans state answer

@@ -33,6 +33,7 @@ function countDown() {
                 switchState('answer')
                 state.answer.querySelector('h2').style.color = 'red'
                 state.answer.querySelector('h2').innerHTML = 'Trop Tard !';
+                state.answer.querySelector('#bonrep').innerHTML = '';
                 state.answer.querySelector('#rep').innerHTML = 'La reponse etait';
                 state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
                 questionNumber++;
@@ -337,7 +338,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
         state.answer.querySelector('#mauvaiserep').innerHTML = '';
         state.answer.querySelector('#rep').innerHTML = '';
-        state.answer.querySelector('#bonrep').innerHTML = 'C\'est bien le drapeau du pays :' + rep2;
+        state.answer.querySelector('#bonrep').innerHTML = 'C\'est bien le drapeau du pays : ' + rep2;
         state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
         score++;
         WIN.play();
@@ -346,7 +347,7 @@ const checkAnswer = (userAnswer) => {
         state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
         state.answer.querySelector('#mauvaiserep').innerHTML = `Vous avez répondu ${rep}`;
-        state.answer.querySelector('#rep').innerHTML = 'Alors que le drapeau du pays :' + rep2 + ' est celui là :';
+        state.answer.querySelector('#rep').innerHTML = 'Alors que le drapeau du pays : ' + rep2 + ' est celui là :';
         state.answer.querySelector('#bonrep').innerHTML = '';
         state.answer.querySelector('#goodflag').setAttribute("src", questions.answer);
         LOOSE.play();
