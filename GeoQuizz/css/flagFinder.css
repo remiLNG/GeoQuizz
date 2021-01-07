@@ -136,3 +136,11 @@ div#select {
 img#goodflag {
     margin-bottom:5%;
 }
+
+#timer {
+    position: absolute;
+    right: 0;
+    margin-right: 200px;
+    top: 50px;
+    font-family: milky; 
+}

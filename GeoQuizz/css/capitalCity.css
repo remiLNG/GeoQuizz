@@ -136,6 +136,7 @@ a:active{
     right: 0;
     margin-right: 200px;
     top: 50px;
+    font-family: milky; 
 }
 
 #myBtn{
@@ -185,4 +186,28 @@ li {
 
 p#bonrep {
     margin-bottom:5%;
+}
+
+.jumbotron2{
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 25%;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-size: cover;
+    border-radius: 25px 25px 25px 25px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+}
+
+
+::placeholder{
+    padding-top: 3rem;
+    font-family: milky; 
+    font-size: 120%; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
 }
