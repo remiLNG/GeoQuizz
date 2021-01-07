@@ -18,7 +18,15 @@ body {
 }
 
 #ChoixText{
-    margin-bottom: 20px;
+    margin-bottom: 10rem;
+}
+
+#normal{
+    margin-right: 2rem;
+}
+
+#hard{
+    margin-left: 2rem;
 }
 
 
@@ -88,7 +96,7 @@ a:active{
 /* Partie pour la selection du mode */
 
 div#select {
-    margin-top:25%;
+    margin-top:8%;
     text-align : center;
 }
 
