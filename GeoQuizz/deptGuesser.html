@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu map svg</title>
-    <link rel="stylesheet" href="./css/swag.css">
+    <title>DeptGuesser</title>
+    <link rel="stylesheet" href="./css/deptGuesser.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
@@ -17,8 +17,11 @@
 </head>
 
 <body>
-    <div class="map">
-        <div class="map__image">
+    <div id="question">
+    </div>
+
+    <div id="map" class="map">
+        <div id ="map__image" class="map__image">
 
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap"
                 xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 617 585">
@@ -99,8 +102,8 @@
                         <path
                             d="M293.91,336.46L300.25,332.48L301.68,334.61L304.93,334.15L306.2,336.4L309.33,336.84L309.26,338.46L318.57,334.08L318.57,334.08L320.16,338.8L317.31,342.51L319.65,344.98L319.27,349.45L319.27,349.45L318.39,352.96L319.9,355.16L318.1,355.86L312.86,353.21L313.08,357.82L306.2,364.6L307.83,367.73L305.6,369.57L305.33,372.79L302.24,374.09L304.08,377.52L300.7,379.01L300.7,379.01L296,380.39L294.35,378.91L289.95,382.12L283.49,375.93L278.99,374.84L275.25,376.42L275.25,376.42L272.34,371.41L273.75,370.25L269.49,369.79L267.17,367.97L268.66,366.51L266.11,365.59L268.21,363.42L266.09,361.59L266.46,358.72L270.15,355.2L267.4,354.21L268.83,352.13L267.16,351.5L267.16,351.5L268.51,348.76L271.17,350.12L276.48,344.34L280.84,344.88L289.28,337.48L292.92,338.44z" />
                     </a>
-                    <a>
-                        <path id="FR-2A" title="Corse-du-Sud"
+                    <a id="Corse-du-Sud">
+                        <path
                             d="M571.02,527.46l8.21,3.13l3.78,-0.3l1.85,4.27l5.8,2.59l4.81,10.18l2.52,-0.15l0.43,9.91l3.51,0.96l3.54,-1.5l0,0l-0.56,11.21l-1.42,2.22l-1.93,-0.65l-0.89,2.92l1.32,-1.61l2.12,0.59l-3.96,3.53l0.2,3.66l-2.58,3.03l2.05,-0.85l-2.13,3.13l-4.98,-1.37l0.86,-2.59l-2,-1.41l-9.33,-2.88l0.1,-1.59l-2.41,-0.52l-0.07,-3.46l5.41,-3.83l-5.58,-0.67l-0.28,-2.29l-4.82,0.04l2.98,-2l-0.77,-1.43l2.48,-0.52l1.3,-4.66l-2.28,-2.11l-5.83,2.2l-0.63,-3.97l3,-0.7l-0.19,-1.94l3.62,-2.07l-1.97,-3.49l-1.69,0.66l-4.23,-2.51l1.49,-1.26l-2.22,-3.87l6.35,-1.73l-3.68,-2.08l0.15,-2.48l-2.3,0.9L571.02,527.46z" />
                     </a>
                     <a id="Haute-Corse">
@@ -411,10 +414,11 @@
             </svg>
 
         </div>
+        <a id="next" class="button2">
+            Passer
+        </a>
     </div>
-    <a>
-        Passer
-    </a>
+
     <script src="./js/DeptGuesser/DeptGuesser.js"></script>
 </body>
 

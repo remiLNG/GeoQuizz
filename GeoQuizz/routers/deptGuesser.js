@@ -9,7 +9,7 @@ router.use(function timeLog(req, res, next) {
 
 
 router.get('/', function(req, res) {
-    res.sendFile(path.join( __dirname, "../swag.html"));
+    res.sendFile(path.join( __dirname, "../deptGuesser.html"));
 });
 
 module.exports = router;

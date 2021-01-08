@@ -8,7 +8,7 @@ const flagfinder = require('./routers/FlagFinder');
 const flagguesser = require('./routers/flagguesser');
 const popguesser = require('./routers/PopGuesser');
 const capitalcity = require('./routers/CapitalCity');
-const svg_game = require('./routers/svg_game');
+const deptGuesser = require('./routers/deptGuesser');
 
 const PORT = 8085;
 
@@ -35,7 +35,7 @@ app.use('/PopGuesser', popguesser);
 
 app.use('/CapitalCity', capitalcity);
 
-app.use('/svg', svg_game);
+app.use('/deptGuesser', deptGuesser);
 
 app.get('/Regle', (req, res) => {
     res.sendFile(path.join(__dirname, "Regle.html"))
