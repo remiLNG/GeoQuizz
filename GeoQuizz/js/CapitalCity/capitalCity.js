@@ -280,7 +280,7 @@ const checkAnswer = (userAnswer) => {
         if (userAnswer === questions.cap) {
             state.answer.querySelector('h2').style.color = 'green'
             state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
-            state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  " + questions.cap + " !";
+            state.answer.querySelector('h3').innerHTML = "La capitale de ce pays : " + questions.pays + " est bien  " + questions.cap + " !";
             state.answer.querySelector('p').innerHTML = '';
             score++;
             WIN.play();
@@ -288,14 +288,14 @@ const checkAnswer = (userAnswer) => {
             // si non alors mauvais reponse
             state.answer.querySelector('h2').style.color = 'red'
             state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
-            state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu " + rep + " qui est la capitale de " + rep2 + " <br> Alors que la capitale de " + questions.pays + " est  " + questions.cap + ' !';
+            state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu " + rep + " qui est la capitale de " + rep2 + " <br><br> Alors que la capitale de " + questions.pays + " est  " + questions.cap + ' !';
             LOOSE.play();
         }
     } else {
         if (champ.value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") == questions.cap.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
             state.answer.querySelector('h2').style.color = 'green'
             state.answer.querySelector('h2').innerHTML = 'Bonne réponse !';
-            state.answer.querySelector('h3').innerHTML = "La capitale de " + questions.pays + " est bien  " + questions.cap + " !";
+            state.answer.querySelector('h3').innerHTML = "La capitale de ce pays : " + questions.pays + " est bien  " + questions.cap + " !";
             state.answer.querySelector('p').innerHTML = '';
             score++;
             WIN.play();

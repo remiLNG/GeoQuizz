@@ -13,6 +13,10 @@ body {
     background-position: center !important;
 }
 
+h2 {
+    font-size: 150%  !important;
+}
+
 #question, img{
     height: 100px;
 }

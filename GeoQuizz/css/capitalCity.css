@@ -15,6 +15,11 @@ body {
 }
 
 
+h2 {
+    font-size: 150%  !important;
+    margin-bottom: 2% !important;
+}
+
 #ChoixText{
     margin-bottom: 10rem; 
 }

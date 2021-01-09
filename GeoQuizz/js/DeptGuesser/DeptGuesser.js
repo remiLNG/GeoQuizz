@@ -52,7 +52,7 @@ const generateQuestion = () => {
     h1.id = "questionState";
     h1.innerHTML = "Question : " + questionNumber + "/" + totalQuestion;
     h2 = document.createElement('h2');
-    h2.innerHTML = "Ou se trouve le departement : " + question;
+    h2.innerHTML = "Où se trouve le departement : " + question;
     h2.id = "questionText";
     myDiv.appendChild(h1);
     myDiv.appendChild(h2);
@@ -66,7 +66,7 @@ const updateFails = () => {
     let currDiv = document.getElementById('question');
     let failslist = document.createElement('p');
     failslist.id = "fail";
-    failslist.innerHTML = 'Il vous reste ' + (fails+1) + ' essaies';
+    failslist.innerHTML = 'Il vous reste ' + (fails+1) + ' essais';
     currDiv.appendChild(failslist);
 }
 
