@@ -6,6 +6,7 @@ var question = ''
 var questionNumber = 1;
 var totalQuestion = 3;
 var fails = 2;
+var score = 0;
 
 paths.forEach(function (path) {
     depts.push(path.id);
@@ -66,7 +67,7 @@ const updateFails = () => {
     let currDiv = document.getElementById('question');
     let failslist = document.createElement('p');
     failslist.id = "fail";
-    failslist.innerHTML = 'Il vous reste ' + (fails+1) + ' essais';
+    failslist.innerHTML = 'Il vous reste ' + (fails + 1) + ' essais';
     currDiv.appendChild(failslist);
 }
 
@@ -82,7 +83,26 @@ const checkAnswer = (userChoice) => {
     if (userChoice == question) {
         //Dans le cas d'une bonne reponse
         document.getElementById(userChoice).children[0].style.fill = "green"
-
+        score++;
+        if (questionNumber > totalQuestion) {
+            displayScore();
+        } else {
+            document.getElementById("next").style.display = 'none'
+            myDiv = document.getElementById("map");
+            nextQuestion = document.createElement('a');
+            nextQuestion.innerHTML = "Question Suivante";
+            nextQuestion.id = "pass"
+            nextQuestion.addEventListener('click', function () {
+                questionNumber++;
+                if (questionNumber > totalQuestion) {
+                    displayScore();
+                } else {
+                    generateQuestion();
+                }
+            })
+            nextQuestion.className += "button2";
+            myDiv.appendChild(nextQuestion);
+        }
     } else {
         if (!(responses.includes(userChoice))) {
             responses.push(userChoice);
@@ -93,19 +113,50 @@ const checkAnswer = (userChoice) => {
             } else {
                 //nombre de tentatives depassees : on propose de passer a la question suivante.
                 document.getElementById("fail").style.display = 'none'
-                document.getElementById("map__image").style.display = 'none'
                 document.getElementById("next").style.display = 'none'
+                document.getElementById(question).children[0].style.fill = "green"
                 myDiv = document.getElementById("map");
                 nextQuestion = document.createElement('a');
                 nextQuestion.innerHTML = "Question Suivante";
                 nextQuestion.id = "pass"
                 nextQuestion.addEventListener('click', function () {
                     questionNumber++;
-                    generateQuestion();
+                    if (questionNumber > totalQuestion) {
+                        displayScore();
+                    } else {
+                        generateQuestion();
+                    }
                 })
                 nextQuestion.className += "button2";
                 myDiv.appendChild(nextQuestion);
             }
         }
     }
+}
+
+const displayScore = () => {
+    document.getElementById("fail").style.display = 'none'
+    document.getElementById("map").style.display = 'none'
+    document.getElementById("next").style.display = 'none'
+    document.getElementById("questionState").style.display = 'none'
+    document.getElementById("questionText").style.display = 'none'
+    myDiv = document.getElementById("question")
+    endTitle = document.createElement("h1")
+    endTitle.innerHTML = "La partie est finie !"
+    scoreResult = document.createElement("h2")
+    scoreResult.innerHTML = "Votre score est : " + score + "/" + totalQuestion;
+    playAgain = document.createElement('a');
+    playAgain.innerHTML = "Rejouer";
+    playAgain.id = "playAgain";
+    playAgain.className += "button2";
+    playAgain.href = "/deptGuesser"
+    menuBtn = document.createElement('a');
+    menuBtn.innerHTML = "Retour au menu";
+    menuBtn.id = "menuBtn";
+    menuBtn.className += "button2";
+    menuBtn.href = "/menu"
+    myDiv.appendChild(endTitle);
+    myDiv.appendChild(scoreResult);
+    myDiv.appendChild(playAgain);
+    myDiv.appendChild(menuBtn);
 }
