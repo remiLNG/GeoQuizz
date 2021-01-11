@@ -7,6 +7,7 @@ var questionNumber = 1;
 var totalQuestion = 3;
 var fails = 2;
 var score = 0;
+var repValide = false;
 
 paths.forEach(function (path) {
     depts.push(path.id);
@@ -39,9 +40,10 @@ const generateQuestion = () => {
     if (document.getElementById("pass") !== null) {
         document.getElementById("pass").parentNode.removeChild(document.getElementById("pass"))
     }
-    if (questionNumber > 1) {
+    if (questionNumber >= 1) {
         paths.forEach(element => {
             element.children[0].style.fill = 'darkslateblue';
+            console.log("q suivente")
         });
     }
     document.getElementById('next').style.display = 'block'
@@ -78,6 +80,7 @@ const createQuestion = (questions) => {
     let random = parseInt(Math.random() * questions.length);
 
     const dept = questions[random];
+    repValide = false;
 
     return dept
 }
@@ -85,10 +88,14 @@ const createQuestion = (questions) => {
 const checkAnswer = (userChoice) => {
     if (userChoice == question) {
         //Dans le cas d'une bonne reponse
-
-        document.getElementById(userChoice).children[0].style.fill = "green"
-        score++;
-        fails = 0;
+        console.log(repValide)
+        if (!repValide) {
+            repValide = true;
+            document.getElementById(userChoice).children[0].style.fill = "green"
+            score++;
+            questionNumber++;
+            fails = 0;
+        }
 
         if (questionNumber > totalQuestion) {
             displayScore();
@@ -119,7 +126,10 @@ const checkAnswer = (userChoice) => {
                         document.getElementById(userChoice).children[0].style.fill = "red"
                     }
                     //nombre de tentatives depassees : on propose de passer a la question suivante.
-                    document.getElementById("fail").style.display = 'none'
+                    
+                    fail = document.getElementById("fail");
+                    fail.innerHTML = 'Vous n\'avez plus d\'essai';
+
                     document.getElementById("next").style.display = 'none'
                     document.getElementById(question).children[0].style.fill = "green"
                     myDiv = document.getElementById("map");
