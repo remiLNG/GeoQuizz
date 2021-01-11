@@ -18,10 +18,13 @@ paths.forEach(function (path) {
 
 const init = async () => {
     let next = document.getElementById('next');
-
     next.addEventListener('click', function () {
         questionNumber++;
-        generateQuestion();
+        if (questionNumber > totalQuestion) {
+            displayScore();
+        } else {
+            generateQuestion();
+        }
     })
 
 
@@ -82,8 +85,11 @@ const createQuestion = (questions) => {
 const checkAnswer = (userChoice) => {
     if (userChoice == question) {
         //Dans le cas d'une bonne reponse
+
         document.getElementById(userChoice).children[0].style.fill = "green"
         score++;
+        fails = 0;
+
         if (questionNumber > totalQuestion) {
             displayScore();
         } else {
@@ -93,7 +99,6 @@ const checkAnswer = (userChoice) => {
             nextQuestion.innerHTML = "Question Suivante";
             nextQuestion.id = "pass"
             nextQuestion.addEventListener('click', function () {
-                questionNumber++;
                 if (questionNumber > totalQuestion) {
                     displayScore();
                 } else {
@@ -101,34 +106,44 @@ const checkAnswer = (userChoice) => {
                 }
             })
             nextQuestion.className += "button2";
-            myDiv.appendChild(nextQuestion);
+            if (!(document.contains(document.getElementById("pass")))) {
+                myDiv.appendChild(nextQuestion);
+            }
         }
     } else {
         if (!(responses.includes(userChoice))) {
             responses.push(userChoice);
-            document.getElementById(userChoice).children[0].style.fill = "red"
-            if (fails > 0) {
-                fails--;
-                updateFails()
-            } else {
-                //nombre de tentatives depassees : on propose de passer a la question suivante.
-                document.getElementById("fail").style.display = 'none'
-                document.getElementById("next").style.display = 'none'
-                document.getElementById(question).children[0].style.fill = "green"
-                myDiv = document.getElementById("map");
-                nextQuestion = document.createElement('a');
-                nextQuestion.innerHTML = "Question Suivante";
-                nextQuestion.id = "pass"
-                nextQuestion.addEventListener('click', function () {
-                    questionNumber++;
-                    if (questionNumber > totalQuestion) {
-                        displayScore();
-                    } else {
-                        generateQuestion();
+            if (fails >= 0) {
+                if (fails == 0) {
+                    if (!(document.getElementById(question).children[0].style.fill == "green")) {
+                        document.getElementById(userChoice).children[0].style.fill = "red"
                     }
-                })
-                nextQuestion.className += "button2";
-                myDiv.appendChild(nextQuestion);
+                    //nombre de tentatives depassees : on propose de passer a la question suivante.
+                    document.getElementById("fail").style.display = 'none'
+                    document.getElementById("next").style.display = 'none'
+                    document.getElementById(question).children[0].style.fill = "green"
+                    myDiv = document.getElementById("map");
+                    nextQuestion = document.createElement('a');
+                    nextQuestion.innerHTML = "Question Suivante";
+                    nextQuestion.id = "pass"
+                    if (!(document.contains(document.getElementById("pass")))) {
+                        nextQuestion.addEventListener('click', function () {
+                            questionNumber++;
+                            if (questionNumber > totalQuestion) {
+                                displayScore();
+                            } else {
+                                generateQuestion();
+                            }
+                        })
+                        nextQuestion.className += "button2";
+                        myDiv.appendChild(nextQuestion);
+                    }
+                }
+                else {
+                    document.getElementById(userChoice).children[0].style.fill = "red"
+                    fails--;
+                    updateFails()
+                }
             }
         }
     }
