@@ -67,8 +67,8 @@ function createButton($class, $text, $id) {
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
             document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} ! </p>`
-            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="capitalcity">  Rejouer </a> </p>'
-            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a id="rejouer" class ="button2" href="capitalcity">  Rejouer </a> </p>'
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a id="retournmenu" class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
     });
@@ -137,7 +137,7 @@ window.onload = init;
 const handleClickChoice = () => {
     if (!hardmode) {
         state.question.querySelector('ul').addEventListener('click', ({ target }) => {
-            if (target.matches('li')) {
+            if (target.matches('a')) {
                 const userAnswer = target.innerHTML;
                 checkAnswer(userAnswer);
             }
@@ -164,7 +164,7 @@ const generateQuestion = () => {
     //Ajouter les choix de reponses sur la page
     if (!hardmode) {
         const reponses = questions.possibilities.map((possibility) => {
-            return `<li id="response" class="btnanswer police">${possibility}</li>`;
+            return `<a id="response" class="button2 police">${possibility}</a>`;
         });
         state.question.querySelector("ul").innerHTML = reponses.join('');
     }

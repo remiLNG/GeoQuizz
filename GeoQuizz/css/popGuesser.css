@@ -14,6 +14,11 @@ body {
     background-position: center !important;
 }
 
+#end {
+    position: relative;
+    margin-top: 20%;
+}
+
 div.jumbotron {
     width: 50%;
     margin-top: 2%;
@@ -114,5 +119,6 @@ a:active{
 }
 
 #pfin{
-    margin-top: 3%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
