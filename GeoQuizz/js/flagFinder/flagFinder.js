@@ -18,7 +18,7 @@ let rep2;
 let paysQuestion = [];
 let hardmode = true;
 let listHard = [];
-let timeBasic = 15
+let timeBasic = 1500
 let timeLeft = timeBasic;
 let timerstop = true;
 

@@ -14,8 +14,18 @@ body {
     background-position: center !important;
 }
 
+div.jumbotron {
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 25%;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-size: cover;
+    border-radius: 25px 25px 25px 25px;
+    align-items: center;
+}
+
 #drapeau1 {
-    width: 25%;
+    width: 33%;
     height: auto;
     border-radius: 25px 25px 25px 25px;
     cursor: pointer;
@@ -23,7 +33,7 @@ body {
 
 
 #drapeau2 {
-    width: 25%;
+    width: 33%;
     height: auto;
     border-radius: 25px 25px 25px 25px;
     cursor: pointer;
@@ -92,17 +102,17 @@ a:active{
 }
 
 #pays2{
-    margin-top: 2rem;
+    margin-top: 2%;
 }
 
 #pays1{
-    margin-top: 2rem;
+    margin-top: 2%;
 }
 
 #Qsuivant{
-    margin-bottom: 2rem;
+    margin-bottom: 3%;
 }
 
 #pfin{
-    margin-top: 3rem;
+    margin-top: 3%;
 }
