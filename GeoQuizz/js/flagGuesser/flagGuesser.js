@@ -136,7 +136,7 @@ const init = async () => {
 // Cliquer sur une des reponses
 const handleClickChoice = () => {
     state.question.querySelector('ul').addEventListener('click', ({ target }) => {
-        if (target.matches('li')) {
+        if (target.matches('a')) {
             const userAnswer = target.innerHTML;
             checkAnswer(userAnswer);
         }
@@ -166,7 +166,7 @@ const generateQuestion = () => {
     //Ajouter les choix de reponses sur la page
     if (!hardmode) {
         const reponses = questions.possibilities.map((possibility) => {
-            return `<li id="response" class="btnanswer police">${possibility}</li>`;
+            return `<a id="response" class="button2 police">${possibility}</a>`;
         });
         state.question.querySelector("ul").innerHTML = reponses.join('');
     } else {

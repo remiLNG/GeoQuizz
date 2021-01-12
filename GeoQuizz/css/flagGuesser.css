@@ -90,13 +90,14 @@ div.jumbotron #flag{
 
 .police{
     text-align: center;
-    padding-top: 3rem;
     font-family: milky; 
     font-size: 200%; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
-    line-height: 26.4px; 
+    line-height: 26.4px;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 /* div end */
@@ -122,9 +123,6 @@ ul.jumbotron {
     border-radius: 25px 25px 25px 25px;
 }
 
-li {
-    margin-left: 5%;
-}
 
 /* Partie pour les boutons */
 
@@ -143,7 +141,6 @@ a{
 
 a:hover {
     background-color: #e94b68;
-    font-size: 125%;
     cursor: pointer;
 }
 
@@ -155,6 +152,7 @@ a:active{
 .button2{
     background-color: rgb(255, 96, 82);
     box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+    text-align: center;
 }
 
 .button2:active{
@@ -193,33 +191,6 @@ a:active{
 
 
 /* Pour les réponses */ 
-
-.btnanswer {
-    display: inline-block;
-    padding: 1%;
-    font-size: 175%;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #047cc2;
-    border: none;
-    border-radius: 10%;
-    box-shadow: 0px 7px 0px 0px rgb(51, 157, 255);
-    transition: all 0.1s;
-  }
-  
-  li:hover {
-      background-color: #0a6599;
-}
-  
-  .btnanswer:active {
-    background-color: #047cc2;
-    box-shadow: 0 5px rgb(51, 157, 255);
-    transform: translateY(4px);
-}
-
 
 #myBtn{
     display:none;
