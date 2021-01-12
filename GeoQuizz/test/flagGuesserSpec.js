@@ -40,6 +40,7 @@ async function testFlagGuesser() {
     driver.findElement(By.id("retourmenu")).click();
     console.log("Le score est affiché " + await driver.wait(until.elementLocated(By.id('end')), 10000).isDisplayed());
     console.log("Le bouton 'retour menu' est affiché " + await driver.wait(until.elementLocated(By.id("pfin")), 10000).isDisplayed());
+    
     driver.quit();
 }
 testFlagGuesser();
