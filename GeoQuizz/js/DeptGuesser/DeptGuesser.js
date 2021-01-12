@@ -7,7 +7,10 @@ var questionNumber = 1;
 var totalQuestion = 3;
 var fails = 2;
 var score = 0;
+//Variable empéchant de spam la carte de mauvaise réponse
 var repValide = false;
+//Variable empéchant de valider une réponse quand la réponse est donné aprés les 3 essaie
+var finquestion = false;
 
 paths.forEach(function (path) {
     depts.push(path.id);
@@ -43,7 +46,6 @@ const generateQuestion = () => {
     if (questionNumber >= 1) {
         paths.forEach(element => {
             element.children[0].style.fill = 'darkslateblue';
-            console.log("q suivente")
         });
     }
     document.getElementById('next').style.display = 'block'
@@ -81,15 +83,15 @@ const createQuestion = (questions) => {
 
     const dept = questions[random];
     repValide = false;
-
+    finquestion = false;
     return dept
+    
 }
 
 const checkAnswer = (userChoice) => {
     if (userChoice == question) {
         //Dans le cas d'une bonne reponse
-        console.log(repValide)
-        if (!repValide) {
+        if (!repValide && !finquestion) {
             repValide = true;
             document.getElementById(userChoice).children[0].style.fill = "green"
             score++;
@@ -126,7 +128,8 @@ const checkAnswer = (userChoice) => {
                         document.getElementById(userChoice).children[0].style.fill = "red"
                     }
                     //nombre de tentatives depassees : on propose de passer a la question suivante.
-                    
+                   
+                    finquestion = true;
                     fail = document.getElementById("fail");
                     fail.innerHTML = 'Vous n\'avez plus d\'essai';
 
