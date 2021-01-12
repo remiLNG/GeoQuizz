@@ -67,6 +67,7 @@ function createButton($class, $text, $id) {
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
             document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} ! </p>`
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="capitalcity">  Rejouer </a> </p>'
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
@@ -288,6 +289,7 @@ const checkAnswer = (userAnswer) => {
             // si non alors mauvais reponse
             state.answer.querySelector('h2').style.color = 'red'
             state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse !';
+            state.answer.querySelector('h3').innerHTML = "";
             state.answer.querySelector('p').innerHTML = "Et non ! Vous avez répondu " + rep + " qui est la capitale de " + rep2 + " <br><br> Alors que la capitale de " + questions.pays + " est  " + questions.cap + ' !';
             LOOSE.play();
         }
@@ -302,6 +304,7 @@ const checkAnswer = (userAnswer) => {
         } else {
             state.answer.querySelector('h2').style.color = 'red'
             state.answer.querySelector('h2').innerHTML = `Mauvaise réponse !`;
+            state.answer.querySelector('h3').innerHTML = "";
             state.answer.querySelector('#mauvrep').innerHTML = `Vous avez répondu ${champ.value}`;
             state.answer.querySelector('#bonrep').innerHTML = `La réponse était : <p style="color:green; margin-top:1%">  ${questions.cap} </p>`;
             LOOSE.play();

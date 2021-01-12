@@ -64,6 +64,7 @@ function createButton($class, $text, $id) {
             switchState('question'); //on passe à la question suivante
         } else { //Si il n'y en a plus alors on affiche le score dans le end state
             document.getElementById('end').innerHTML += `<p> Votre score est de : ${score} / ${questionTotal} ! </p>`
+            document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="popguesser">  Rejouer </a> </p>'
             document.getElementById('end').innerHTML += '<p id="pfin"> <a class ="button2" href="menu">  Retour Menu </a> </p>'
             switchState('end');
         }
@@ -221,12 +222,14 @@ const getAnswer = () => {
 const checkAnswer = (userAnswer) => {
     // si oui alors bonne reponse
     if (userAnswer === questions.answer) {
+        state.answer.querySelector('h2').style.color = 'green'
         state.answer.querySelector('h2').innerHTML = 'Bonne réponse';
         state.answer.querySelector('p').innerHTML = 'Avec ' + questions.answer + ' habitants ce pays : ' + questions.pays + ' est plus peuplé que ce pays : ' + questions.fauxpays + ' qui a ' + questions.fauxpop + ' habitants.';
         score++;
         WIN.play();
     } else {
         // si non alors mauvais reponse
+        state.answer.querySelector('h2').style.color = 'red'
         state.answer.querySelector('h2').innerHTML = 'Mauvaise réponse';
         state.answer.querySelector('p').innerHTML = 'Avec ' + questions.answer + ' habitants ce pays : ' + questions.pays + ' est plus peuplé que ce pays : ' + questions.fauxpays + ' qui a ' + questions.fauxpop + ' habitants.';
         LOOSE.play();

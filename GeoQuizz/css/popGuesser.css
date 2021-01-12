@@ -38,7 +38,7 @@ body {
     text-align: center;
     padding-top: 3rem;
     font-family: milky; 
-    font-size: 100%; 
+    font-size: 150%; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
@@ -89,4 +89,20 @@ a:active{
     margin-right: 200px;
     top: 50px;
     font-family: milky; 
+}
+
+#pays2{
+    margin-top: 2rem;
+}
+
+#pays1{
+    margin-top: 2rem;
+}
+
+#Qsuivant{
+    margin-bottom: 2rem;
+}
+
+#pfin{
+    margin-top: 3rem;
 }

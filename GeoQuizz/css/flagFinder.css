@@ -76,6 +76,7 @@ a{
     border-radius: 20px;
     box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
     transition: all 0.1s;
+    
 }
 
 a:hover {
@@ -107,6 +108,7 @@ div#select {
 
 #pfin{
     margin-top: 3%;
+    margin-bottom: 5rem;
 }
 
 #conteneurflag {
