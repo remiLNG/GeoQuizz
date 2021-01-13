@@ -4,17 +4,17 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-const flagfinder = require('./routers/FlagFinder');
-const flagguesser = require('./routers/flagguesser');
-const popguesser = require('./routers/PopGuesser');
-const capitalcity = require('./routers/CapitalCity');
-const deptGuesser = require('./routers/deptGuesser');
+const flagfinder = require('./routers/routerFlagFinder');
+const flagguesser = require('./routers/routerflagguesser');
+const popguesser = require('./routers/routerPopGuesser');
+const capitalcity = require('./routers/routerCapitalCity');
+const deptGuesser = require('./routers/routerDeptGuesser');
 
 const PORT = 8085;
 
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/assets', express.static(__dirname + '/assets'));
-app.use('/js', express.static(__dirname + '/js'));
+app.use('/jeu', express.static(__dirname + '/jeu'));
 app.use('/fonts', express.static(__dirname + '/fonts'));
 app.use('/sounds', express.static(__dirname + '/sounds'));
 
@@ -24,7 +24,7 @@ app.get('/geojson', (req,res) => {
 })
 
 app.get('/menu', (req, res) => {
-    res.sendFile(path.join(__dirname, "menu.html"))
+    res.sendFile(path.join(__dirname, "/jeu/menu/menu.html"))
 })
 
 app.use('/flagfinder', flagfinder);
@@ -38,7 +38,7 @@ app.use('/CapitalCity', capitalcity);
 app.use('/deptGuesser', deptGuesser);
 
 app.get('/Regle', (req, res) => {
-    res.sendFile(path.join(__dirname, "Regle.html"))
+    res.sendFile(path.join(__dirname, "/jeu/regle/Regle.html"))
 })
 
 app.use("/static", express.static('./static/'));

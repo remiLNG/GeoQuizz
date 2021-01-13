@@ -1,0 +1,246 @@
+@font-face {
+    src: url( ../../fonts/MilkyNice.ttf );
+    font-family: milky;
+}
+  
+
+body {
+    background-image: url("../../assets/jeux.png");
+    background-size:cover;
+    height:100%;
+    background-repeat:no-repeat;
+    background-position-y: 100%;
+    background-attachment:fixed;
+    background-position: center !important;
+}
+
+
+h2 {
+    font-size: 150%  !important;
+    margin-bottom: 2% !important;
+}
+
+#ChoixText{
+    margin-bottom: 10rem; 
+}
+
+#normal{
+    margin-right: 2rem;
+}
+
+#hard{
+    margin-left: 2rem;
+}
+
+
+/* Partie pour la selection du mode */
+
+div#select {
+    margin-top:8%;
+    text-align : center;
+}
+
+/* Partie drapeau et conteneur du drapeau  */
+
+#nbquestion{
+    padding-top: 3rem;
+}
+
+
+/* Écriture  */
+
+.police{
+    text-align: center;
+    font-family: milky; 
+    font-size: 200%; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px;
+    margin-top: 3%; 
+}
+
+
+/* Partie Liste des réponses  */
+
+ul{
+    list-style: none;
+    justify-content: space-around;
+    display: flex;
+}
+
+div.jumbotron {
+    background-color:rgba(255, 255, 255, 0.2);
+    border-radius: 25px 25px 25px 25px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+/* Partie pour les boutons */
+
+a{
+    text-decoration: none !important;
+    color: white !important;
+    background: #ffffff;
+    position: relative;
+    padding: 0.7%;
+    font-family: milky;
+    font-size: 150%;
+    border-radius: 20px;
+    box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+    transition: all 0.1s;
+}
+
+a:hover {
+    background-color: #e94b68;
+    cursor: pointer;
+}
+
+#end {
+    position: relative;
+    margin-top: 20%;
+}
+
+a:active{
+    top: 0.5rem;
+    box-shadow: 0px 7px 0px 0px #f02046;
+}
+
+.button2{
+    background-color: rgb(255, 96, 82);
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+    margin-top: 0% !important;
+}
+.button2:active{
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+
+#pfin{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+/* pour le drapeau */
+
+#question, img{
+    border-radius: 25%;
+}
+
+
+/* Pour les réponses */ 
+
+.btnanswer {
+    display: inline-block;
+    padding: 1%;
+    font-size: 175%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #047cc2;
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0px 7px 0px 0px rgb(51, 157, 255);
+    transition: all 0.1s;
+  }
+  
+  li:hover {
+      background-color: #0a6599;
+}
+  
+  .btnanswer:active {
+    background-color: #047cc2;
+    box-shadow: 0 5px rgb(51, 157, 255);
+    transform: translateY(4px);
+}
+
+
+#timer {
+    position: absolute;
+    right: 0;
+    margin-right: 200px;
+    top: 50px;
+    font-family: milky; 
+}
+
+#myBtn{
+    display: none;
+}
+
+div#contrep {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+#champ {
+    margin-left: 30%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+a#Pass {
+    text-align:center;
+    font-size: 200%
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+/* Partie Liste des réponses  */
+
+ul{
+    list-style: none;
+    justify-content: space-around;
+    display: flex;
+}
+
+ul.jumbotron {
+    background-color:rgba(255, 255, 255, 0.2);
+    border-radius: 25px 25px 25px 25px;
+}
+
+p#bonrep {
+    margin-bottom:5%;
+}
+
+.jumbotron2{
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 25%;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-size: cover;
+    border-radius: 25px 25px 25px 25px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+}
+
+
+::placeholder{
+    padding-top: 3rem;
+    font-family: milky; 
+    font-size: 120%; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
+input[type="text"]
+{
+    padding-top: 3rem;
+    font-family: milky; 
+    font-size: 120%; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
+#menu{
+    margin-top: 6%;
+}

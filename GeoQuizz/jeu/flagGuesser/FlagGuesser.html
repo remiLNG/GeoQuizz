@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jeu/flagGuesser/flagGuesser.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="#" />
+    <title>FlagGuesser</title>
+</head>
+
+<body>
+    <div id="select">
+        <div id="ChoixText" class="police">
+            Choisissez votre mode de jeu :
+        </div>
+        <a id="normal" class ="button2">Normal</a>
+        <a id="hard" class ="button2">Difficile</a>
+        <div id="menu">
+            <a class="button2" href="menu">Retour Menu</a>
+        </div>
+    </div>
+    <div id="question" class="container">
+        <h1 id="timer"></h1>
+        <button id="myBtn" onclick="checkAnswer()">Button</button>
+        <p id="nbquestion"  class="police"></p>
+        <p id="questionTitle"  class="police"></p>
+        <div id="jumboflag" class="jumbotron">
+            <img id="flag" >
+        </div>
+        <div id = form class="jumbotron2">
+            <input type="text" id="champ" placeholder="Nom du pays">
+        </div>
+        <ul id="liste" class="jumbotron"></ul>
+        <a id="Pass" class="button2"> Passer </a>
+    </div>
+
+    <div id="answer" class="police" style="display: none;">
+        <h2></h2>
+        <p id="mauvrep"></p>
+        <img id="mauvdrap"></img>
+        <p id="bonrep"></p>
+    </div>
+
+
+    <div id="end" class="police" style="display: none;">
+    </div>
+    <script src="jeu/flagGuesser/flagGuesser.js"></script>
+    <script src="sounds/sound.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+@font-face {
+    src: url( ../../fonts/MilkyNice.ttf );
+    font-family: milky;
+}
+
+body {
+    background-image: url("../../assets/background.png");
+    background-size:cover;
+    height:100%;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position: center !important;
+}
+
+.police{
+  text-align: center;
+  padding-top: 3rem;
+  font-family: milky; 
+  font-size:1.75vw;
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 700; 
+  line-height: 26.4px; 
+}
+
+.policeS{
+    text-align: center;
+    padding-top: 2rem;
+    font-family: milky; 
+    font-size:0.75vw; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px; 
+}
+
+#title.jumbotron {
+    max-width: 20%;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-size: cover;
+    border-radius: 25px 25px 25px 25px;
+    margin-left: 40%;
+    
+}
+
+#title.j1 {
+  background-color: rgba(224, 24, 24, 0.3);
+}
+
+#title.j2 {
+  background-color: rgba(16, 233, 16, 0.3);
+}
+
+#title.j3 {
+  background-color: rgba(15, 196, 241, 0.3);
+}
+
+#title.j4 {
+  background-color: rgba(184, 24, 224, 0.3);
+}
+
+#title.j5 {
+  background-color: rgba(211, 233, 15, 0.3);
+}
+
+#text.jumbotron {
+    max-width: 50%;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-size: cover;
+    border-radius: 25px 25px 25px 25px;
+    margin-left: 25%;
+    
+}
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+  background: #ffffff;
+  position: relative;
+  padding: 0.7%;
+  font-family: milky;
+  font-size: 150%;
+  border-radius: 20px;
+  box-shadow: 0px 15px 0px 0px #f02046, 0px 0px 20px 0px #bbb;
+  transition: all 0.1s;
+}
+
+a:hover {
+  background-color: #e94b68;
+  font-size: 175%;
+}
+
+
+a:active {
+  top: 0.5rem;
+  box-shadow: 0px 7px 0px 0px #f02046;
+}
+
+#pfin{
+  margin-top: 3%;
+  justify-content: space-around;
+  display: flex;
+}
+
+.button2 {
+  background-color: rgb(255, 96, 82);
+  box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}
+.button2:active {
+  box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+}

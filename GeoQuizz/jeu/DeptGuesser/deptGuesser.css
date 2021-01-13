@@ -1,0 +1,74 @@
+@font-face {
+    src: url( ../../fonts/MilkyNice.ttf );
+    font-family: milky;
+}
+
+body {
+    background-image: url("../../assets/jeux.png");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position-y: 100%;
+    background-attachment:fixed;
+    background-position: center !important;
+    font-family: milky !important;
+    text-align: center !important;
+}
+
+a{
+    text-decoration: none !important;
+    color: white !important;
+    background: #ffffff;
+    position: relative;
+    padding: 0.7%;
+    font-family: milky;
+    font-size: 150%;
+    border-radius: 20px;
+    box-shadow: 0px 15px 0px 0px #f02046,
+}
+
+h1 {
+    position: relative;
+    margin-top: 20%;
+}
+
+a:hover {
+    font-size: 150%;
+    cursor: pointer;
+}
+
+a#next {
+    margin-top: 5%;
+}
+
+
+
+.button2{
+    background-color: rgb(255, 96, 82);
+    box-shadow: 0px 7px 0px 0px rgb(194, 122, 122);
+    margin-left: 2%;
+    margin-right:2%;
+}
+
+.button2:hover{
+    background-color: #e94b68;
+}
+
+.map {
+    width: 35%;
+    margin-left: 30%;
+    float: center;
+}
+
+.map path{
+    fill: darkslateblue;
+    stroke: white;
+    stroke-width: 1px;
+    transition: fill 0.3s;
+}
+
+.map path:hover{
+    fill: blueviolet;
+}
+
+
+
